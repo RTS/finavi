@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>finavi-ejb</artifactId>
+    <packaging>ejb</packaging>
+    <name>finavi-ejb</name>
+
+    <parent>
+        <groupId>sk.fhi.team4.finavi</groupId>
+        <artifactId>finavi</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+<repositories>
+   <repository>
+  <id>jboss-maven2</id>
+  <url>https://repository.jboss.org/nexus/</url>
+   </repository>
+</repositories>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-ejb_3.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+        	<groupId>javax.persistence</groupId>
+        	<artifactId>persistence-api</artifactId>
+        	<version>1.0</version>
+        	<type>jar</type>
+        	<scope>provided</scope>
+        </dependency>
+    </dependencies>
+    	<build>
+		<finalName>finaviejb</finalName>
+		<resources>		
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.config</include>
+					<include>**/*.wsdl</include>
+					<include>**/*.xml</include>
+				</includes>			
+			</resource>
+			
+		</resources>
+		
+		
+		<plugins>
+			<!--
+				========== ATTENTION ========== Default configuration of these
+				plugins is defined in parent pom usage of profile here with check is
+				not possible for child poms http://jira.codehaus.org/browse/MNG-4174
+			-->
+			<plugin> <!-- extract bootstrap -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			
+
+			<!-- END DEFAULT CONFIGURATION -->
+			
+<!-- generates schema.dll -->			
+<!--		    <plugin>-->
+<!--		      <groupId>org.codehaus.mojo</groupId>-->
+<!--		      <artifactId>hibernate3-maven-plugin</artifactId>-->
+<!--		      <version>2.2</version>-->
+<!--		      <executions>-->
+<!--		        <execution>-->
+<!--		          <phase>process-classes</phase>-->
+<!--		          <goals>-->
+<!--		            <goal>hbm2ddl</goal>-->
+<!--		          </goals>-->
+<!--		        </execution>-->
+<!--		      </executions>-->
+<!--		      <configuration>-->
+<!--		        <components>-->
+<!--		          <component>-->
+<!--		            <name>hbm2ddl</name>-->
+<!--		            <implementation>jpaconfiguration</implementation>-->
+<!--		          </component>-->
+<!--		        </components>-->
+<!--		        <componentProperties>-->
+<!--		          <persistenceunit>ClaimPersistentUnit</persistenceunit>-->
+<!--		          <outputfilename>schema.ddl</outputfilename>-->
+<!--		          <drop>false</drop>-->
+<!--		          <create>true</create>-->
+<!--		          <export>false</export>-->
+<!--		          <format>true</format>-->
+<!--		        </componentProperties>-->
+<!--		      </configuration>-->
+<!--		    </plugin>-->
+		</plugins>
+	</build>
+</project>
