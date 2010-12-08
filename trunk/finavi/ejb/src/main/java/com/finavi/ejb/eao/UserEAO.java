@@ -48,5 +48,16 @@ public class UserEAO implements GenericEAO<User> {
 		q.setParameter("mail", mail);
 		return (List<User>)q.getResultList();
 	}
+
+	public User findByEmailAndPassword(String email, String password) {
+		Query q = em.createQuery("from User u where u.email = :mail and u.password = :password");
+		q.setParameter("mail", email);
+		q.setParameter("password", password);
+		Object result = q.getSingleResult();
+		if (result!=null){
+			return (User)result;
+		}
+		return null;
+	}
 	
 }
