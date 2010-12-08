@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources> 
+    <local-tx-datasource> 
+        <jndi-name>MySqlDS</jndi-name> 
+        <connection-url>jdbc:mysql://www.freesqldatabase.com:3306/sql01_5400finavi</connection-url> 
+        <driver-class>com.mysql.jdbc.Driver</driver-class> 
+        <user-name>sql01_54001</user-name> 
+        <password>finavi</password> 
+    <metadata>
+       <type-mapping>mySQL</type-mapping>
+    </metadata>
+  </local-tx-datasource>
+</datasources>
+
