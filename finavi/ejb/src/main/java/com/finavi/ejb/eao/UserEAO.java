@@ -28,7 +28,9 @@ public class UserEAO implements GenericEAO<User> {
 
 	@Override
 	public User save(User arg) {
-		return em.merge(arg);
+		User u = em.merge(arg);
+		em.flush();
+		return u;
 	}
 
 	@Override

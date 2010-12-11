@@ -1,17 +1,21 @@
 package com.finavi.ejb;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.finavi.ejb.eao.BankEAO;
 import com.finavi.ejb.eao.UserEAO;
+import com.finavi.model.Role;
 import com.finavi.model.User;
 /**
  * @author matus
@@ -20,6 +24,7 @@ import com.finavi.model.User;
 @Local(value=UserServiceLocal.class)
 @Remote(value=UserServiceRemote.class)
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class UserServiceBean implements UserServiceLocal {
 	@PersistenceContext
 	EntityManager em;
@@ -48,19 +53,19 @@ public class UserServiceBean implements UserServiceLocal {
 	}
 
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public User add(User user) {
 		return getEAO().save(user);
 	}
 
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public User update(User user) {
 		return getEAO().save(user);
 	}
 
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public User delete(User user) {
 		return getEAO().delete(user);
 	}
@@ -84,7 +89,11 @@ public class UserServiceBean implements UserServiceLocal {
 	}
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public boolean register(User user) {
+		Set<Role> defRoles = new HashSet<Role>();
+		defRoles.add(em.find(Role.class, 1));
+		user.setRoles(defRoles);
 		if (add(user)!=null){
 			return true;
 		}

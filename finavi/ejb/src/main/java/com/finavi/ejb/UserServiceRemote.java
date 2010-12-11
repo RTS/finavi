@@ -27,8 +27,19 @@ public interface UserServiceRemote {
 	
 	public User getByEmail(String email);
 	
+	/**
+	 * Vytvori noveho pouzivatela.
+	 * @param user Udaje o pouzivatelovi. 
+	 * @return vrati ci prebehla v poriadku.
+	 */
 	public boolean register(User user);
-	
+	/**
+	 * User login. 
+	 * 
+	 * @param email Email pouzivatela
+	 * @param password heslo pouzivatela
+	 * @return Vrati instanciu pouzivatela ak prihlasenie prebehlo ok, Inak vrati Null;
+	 */
 	public User login(String email, String password);
 	
 }

@@ -11,14 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 @Entity
 public class User implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6819280874413951096L;
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -63,12 +59,7 @@ public class User implements Serializable{
 	@OneToOne(optional=true, cascade=CascadeType.ALL)
 	@JoinColumn(name="agent_fk")
 	private User agent;
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    @JoinTable(
-            name="user_has_role",
-            joinColumns = @JoinColumn( name="user_id"),
-            inverseJoinColumns = @JoinColumn( name="role_id")
-    )
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE},fetch=FetchType.EAGER)
 	private Set<Role> roles;
 	
 	public User() {
