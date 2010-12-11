@@ -2,6 +2,7 @@ package com.finavi.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -40,18 +41,18 @@ public class Loan implements Serializable{
 	private double accountManagementFee;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinTable(
-            name="loanConditions",
+            name="loan_Conditions",
             joinColumns = @JoinColumn( name="loan_id"),
             inverseJoinColumns = @JoinColumn( name="condition_id")
     )
-	private List<LoanConditions> conditions;
+	private Set<LoanConditions> conditions;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(
             name="loanLivingWages",
             joinColumns = @JoinColumn( name="loan_id"),
             inverseJoinColumns = @JoinColumn( name="livingWage_id")
     )
-	private List<LivingWages> livingWagesRates;
+	private Set<LivingWages> livingWagesRates;
 	
 	public Loan(){
 		
@@ -113,19 +114,19 @@ public class Loan implements Serializable{
 		this.accountManagementFee = accountManagementFee;
 	}
 
-	public List<LoanConditions> getConditions() {
+	public Set<LoanConditions> getConditions() {
 		return conditions;
 	}
 
-	public void setConditions(List<LoanConditions> conditions) {
+	public void setConditions(Set<LoanConditions> conditions) {
 		this.conditions = conditions;
 	}
 
-	public void setLivingWagesRates(List<LivingWages> livingWagesRates) {
+	public void setLivingWagesRates(Set<LivingWages> livingWagesRates) {
 		this.livingWagesRates = livingWagesRates;
 	}
 
-	public List<LivingWages> getLivingWagesRates() {
+	public Set<LivingWages> getLivingWagesRates() {
 		return livingWagesRates;
 	}
 

@@ -2,7 +2,9 @@ package com.finavi.ejb;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -71,7 +73,7 @@ public class TestBean implements TestBeanLocal {
 		lw2.setCoupleWithTwoChildExpr("400");
 		lw2.setSingleExpr("single");
 		lw2.setSingleWithOneChildExpr("34");
-		List<LivingWages> list = new ArrayList<LivingWages>();
+		Set<LivingWages> list = new HashSet<LivingWages>();
 		list.add(lw2);
 		list.add(lw1);
 		l.setLivingWagesRates(list);
@@ -87,7 +89,7 @@ public class TestBean implements TestBeanLocal {
 		cond3.setFixation(3);
 		cond3.setInterestRateNoClient(1.5d);
 		cond3.setInterestRateWhenClient(3);
-		List<LoanConditions> conds = new ArrayList<LoanConditions>();
+		Set<LoanConditions> conds = new HashSet<LoanConditions>();
 		conds.add(cond3);
 		conds.add(cond2);
 		conds.add(cond);
