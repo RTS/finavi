@@ -2,13 +2,17 @@ package com.finavi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 @Entity
 public class User implements Serializable{
@@ -59,9 +63,13 @@ public class User implements Serializable{
 	@OneToOne(optional=true, cascade=CascadeType.ALL)
 	@JoinColumn(name="agent_fk")
 	private User agent;
-	@OneToOne
-	@JoinColumn(name="role_fk")
-	private Role role;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinTable(
+            name="user_has_role",
+            joinColumns = @JoinColumn( name="user_id"),
+            inverseJoinColumns = @JoinColumn( name="role_id")
+    )
+	private Set<Role> roles;
 	
 	public User() {
 		
@@ -211,12 +219,12 @@ public class User implements Serializable{
 		this.agent = agent;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
-	public Role getRole() {
-		return role;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 	public void setPassword(String password) {
