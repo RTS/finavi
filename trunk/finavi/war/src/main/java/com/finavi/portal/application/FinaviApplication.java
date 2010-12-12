@@ -5,10 +5,15 @@ import org.apache.wicket.Response;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebApplication;
 
+import com.finavi.portal.page.user.RegistrationPage;
 import com.finavi.portal.page.welcome.WelcomePage;
 
 public class FinaviApplication extends WebApplication{
-
+	
+	public FinaviApplication() {
+		mountBookmarkablePage("/registracia", RegistrationPage.class);
+	}
+	
 	@Override
 	public Class<? extends WelcomePage> getHomePage() {
 		return WelcomePage.class;
@@ -18,5 +23,7 @@ public class FinaviApplication extends WebApplication{
 	public Session newSession(Request request, Response response) {
 		return new FinaviSession(request);
 	}
-
+	
+	
+	
 }

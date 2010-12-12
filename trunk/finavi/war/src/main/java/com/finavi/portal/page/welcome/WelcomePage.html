@@ -6,6 +6,7 @@
 </head>
 <body>
 	<wicket:extend>
+	<div id="main-box">
 	<div id="quote">
 		<form action="post" wicket:id="loginForm">
 			<label>Email:</label>
@@ -14,7 +15,9 @@
 			<input wicket:id="password" type="password" />
 			<input type="submit" value="prihlásiť" />
 			<span wicket:id="feedback"></span>
+			<a href="/finaviweb/registracia">Registrácia</a>
 		</form>
+	</div>
 	</div>
 	</wicket:extend>
 </body>
