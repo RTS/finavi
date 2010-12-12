@@ -9,6 +9,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 import com.finavi.portal.page.base.AutheticatedPage;
 import com.finavi.portal.page.user.RegistrationPage;
 import com.finavi.portal.page.user.ScoringRequestFormPage;
+import com.finavi.portal.page.welcome.AboutPage;
 import com.finavi.portal.page.welcome.WelcomePage;
 
 public class FinaviApplication extends WebApplication{
@@ -16,6 +17,7 @@ public class FinaviApplication extends WebApplication{
 	public FinaviApplication() {
 		mountBookmarkablePage("/registracia", RegistrationPage.class);
 		mountBookmarkablePage("/ziadostHypoteky", ScoringRequestFormPage.class);
+		mountBookmarkablePage("/about", AboutPage.class);
 	}
 	
 	@Override

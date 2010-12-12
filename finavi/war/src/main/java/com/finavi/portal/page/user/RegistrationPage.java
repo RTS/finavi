@@ -8,10 +8,13 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import com.finavi.model.User;
+import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
+import com.finavi.portal.page.base.BasePage;
+import com.finavi.portal.page.welcome.WelcomePage;
 import com.finavi.portal.service.FinaviService;
 
-public class RegistrationPage extends AutheticatedPage{
+public class RegistrationPage extends BasePage{
 	
 	public RegistrationPage() {
 		Form<User> form = new Form<User>("registrationForm",new CompoundPropertyModel<User>(new User())){
@@ -22,6 +25,9 @@ public class RegistrationPage extends AutheticatedPage{
 			protected void onSubmit() {
 				System.out.println(getModelObject().getCity());
 				System.out.println(FinaviService.getUserService().register(getModelObject()));
+				
+				((FinaviSession) getSession()).setLoggedUser(getModelObject());
+				setResponsePage(WelcomePage.class);
 			}
 		};
 		

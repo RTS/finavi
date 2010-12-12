@@ -46,6 +46,7 @@ h5 { font-size:100%; }
       
       #logo span {
         color: #9fcee3;
+        padding: 0px 0px 0px 0px;
       }
       
       #navigation{
@@ -54,7 +55,7 @@ h5 { font-size:100%; }
         line-height: 83px;
         display: block;
         height: 108px;
-        width: 530px;
+        /*width: 530px;*/
         top: 10px;
         text-align: right;
         font-size: 95%;
@@ -174,7 +175,7 @@ hr { display:block; height:1px; margin:10px 0; padding:0; border:0 solid #CCC; b
 
 .loginUser {
 	float: right;
-	margin: 45px 45px 0 0;
+	margin: 15px 45px 0 0;
 }
 .feedbackPanel {
 	margin: 20px 15px 5px 15px;
