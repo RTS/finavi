@@ -92,7 +92,7 @@ public class UserServiceBean implements UserServiceLocal {
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public boolean register(User user) {
 		Set<Role> defRoles = new HashSet<Role>();
-		defRoles.add(em.find(Role.class, 1));
+		defRoles.add(em.find(Role.class, 1l));
 		user.setRoles(defRoles);
 		if (add(user)!=null){
 			return true;
