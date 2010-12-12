@@ -2,6 +2,7 @@ package com.finavi.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -246,4 +247,13 @@ public class User implements Serializable{
 		return scorings;
 	}
 	
+	public static boolean isUserInRole(User user, String role) {
+		for (Iterator<Role> roles = user.getRoles().iterator(); roles.hasNext();) {
+			Role type = (Role) roles.next();
+			if (type.getName().equalsIgnoreCase(role)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

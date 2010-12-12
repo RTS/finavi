@@ -1,0 +1,151 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.5-strict.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<wicket:extend>
+	<form action="post" wicket:id="registrationForm">
+		<div wicket:id="feedbackPanel"></div>
+		<table>
+			<colgroup>
+				<col width="250"/>
+			</colgroup>
+			<tbody>
+				<tr>
+					<td>
+						<label>Vek:</label>
+					</td>
+					<td>
+						<input wicket:id="age"/>
+					</td>
+					<td>
+						<label>Príjem žiadateľa:</label>
+					</td>
+					<td>
+						<input wicket:id="incomeOfApplicant"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Výdavky žiadateľa:</label>
+					</td>
+					<td>
+						<input wicket:id="expensesOfApplicant"/>
+					</td>
+					<td>
+						<label>Výška hypotéky:</label>
+					</td>
+					<td>
+						<input wicket:id="loanAmount"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Doba splácania:</label>
+					</td>
+					<td>
+						<input wicket:id="repaymentPeriod"/>
+					</td>
+					<td>
+						<label>Fixácia:</label>
+					</td>
+					<td>
+						<input wicket:id="fixation"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Hodnota nehnuteľnosti:</label>
+					</td>
+					<td>
+						<input wicket:id="realPropertyValue"/>
+					</td>
+					<td>
+						<label>Rodinný stav:</label>
+					</td>
+					<td>
+						<input wicket:id="familyStatus"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Počet detí:</label>
+					</td>
+					<td>
+						<input wicket:id="numberOfChildren"/>
+					</td>
+					<td>
+						<label>Počet nezaopatrených detí:</label>
+					</td>
+					<td>
+						<input wicket:id="numberOfDependentChildren"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Typ nehnuteľosti:</label>
+					</td>
+					<td>
+						<input wicket:id="realPropertyType"/>
+					</td>
+					<td>
+						<label>Počet dospelých osôb:</label>
+					</td>
+					<td>
+						<input wicket:id="numberOfAdultPersons"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Veriteľ:</label>
+					</td>
+					<td>
+						<input wicket:id="coApplicant"/>
+					</td>
+					<td>
+						<label>Príjem veriteľa:</label>
+					</td>
+					<td>
+						<input wicket:id="incomeOfCoApplicant"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Výdavky veriteľa:</label>
+					</td>
+					<td>
+						<input wicket:id="expensesOfCoApplicant"/>
+					</td>
+					<td>
+						<label>Zamestnanie:</label>
+					</td>
+					<td>
+						<input wicket:id="employment"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Zamestnanie:</label>
+					</td>
+					<td>
+						<input wicket:id="highestEducation"/>
+					</td>
+					<td>
+						<label>Aktuálne bydlisko:</label>
+					</td>
+					<td>
+						<input wicket:id="currentHousing"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<input type="submit" value="Odoslať žiadosť">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	</wicket:extend>
+</body>
+</html>
