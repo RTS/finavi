@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import com.finavi.model.ScoringRequest;
+import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
 import com.finavi.portal.service.FinaviService;
 
@@ -19,7 +20,9 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 
 			@Override
 			protected void onSubmit() {
-				FinaviService.getMorgageService().calculateScorings(getModelObject());
+				ScoringRequest request = getModelObject();
+				request.setApplicant(FinaviSession.get().getLoggedUser());
+				FinaviService.getMorgageService().calculateScorings(request);
 			}
 			
 		};

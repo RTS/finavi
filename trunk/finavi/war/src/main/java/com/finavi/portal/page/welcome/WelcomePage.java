@@ -12,13 +12,14 @@ import com.finavi.portal.page.base.BasePage;
 import com.finavi.portal.page.user.ScoringTablePage;
 import com.finavi.portal.service.FinaviService;
 
-public class WelcomePage extends BasePage{
-	
+public class WelcomePage extends BasePage {
+
 	public WelcomePage() {
-		
-		final CompoundPropertyModel<User> model = new CompoundPropertyModel<User>(new User());
-		
-		Form<User> form = new Form<User>("loginForm",model){
+
+		final CompoundPropertyModel<User> model = new CompoundPropertyModel<User>(
+				new User());
+
+		Form<User> form = new Form<User>("loginForm", model) {
 
 			private static final long serialVersionUID = 1L;
 
@@ -26,8 +27,11 @@ public class WelcomePage extends BasePage{
 			protected void onSubmit() {
 				User user = null;
 				try {
-					user = FinaviService.getUserService().login(model.getObject().getEmail(), model.getObject().getPassword());
-					((FinaviSession)getSession()).setLoggedUser(user);
+					user = FinaviService.getUserService().login(
+							model.getObject().getEmail(),
+							model.getObject().getPassword());
+					((FinaviSession) getSession()).setLoggedUser(user);
+					clearInput();
 					
 					if (User.isUserInRole(user, "user")) {
 						setResponsePage(ScoringTablePage.class);
@@ -40,14 +44,13 @@ public class WelcomePage extends BasePage{
 				}
 			}
 		};
-		
 		form.add(new FeedbackPanel("feedback"));
 		TextField<String> loginField = new TextField<String>("email");
 		PasswordTextField passwordField = new PasswordTextField("password");
-		
+
 		form.add(loginField);
 		form.add(passwordField);
-		
+
 		add(form);
 	}
 	
