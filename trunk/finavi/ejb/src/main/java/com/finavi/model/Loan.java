@@ -46,13 +46,9 @@ public class Loan implements Serializable{
             inverseJoinColumns = @JoinColumn( name="condition_id")
     )
 	private Set<LoanConditions> conditions;
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinTable(
-            name="loanLivingWages",
-            joinColumns = @JoinColumn( name="loan_id"),
-            inverseJoinColumns = @JoinColumn( name="livingWage_id")
-    )
-	private Set<LivingWages> livingWagesRates;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private LivingWages livingWagesRates;
 	
 	public Loan(){
 		
@@ -122,11 +118,11 @@ public class Loan implements Serializable{
 		this.conditions = conditions;
 	}
 
-	public void setLivingWagesRates(Set<LivingWages> livingWagesRates) {
+	public void setLivingWagesRates(LivingWages livingWagesRates) {
 		this.livingWagesRates = livingWagesRates;
 	}
 
-	public Set<LivingWages> getLivingWagesRates() {
+	public LivingWages getLivingWagesRates() {
 		return livingWagesRates;
 	}
 
