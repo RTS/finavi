@@ -1,7 +1,5 @@
 package com.finavi.portal.page.welcome;
 
-import javax.persistence.NoResultException;
-
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;

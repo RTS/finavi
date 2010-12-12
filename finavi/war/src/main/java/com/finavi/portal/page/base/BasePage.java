@@ -22,7 +22,7 @@ public class BasePage extends WebPage{
 				if (FinaviSession.get().isAuthenticated()) {
 					return FinaviSession.get().getLoggedUser().getName()+" "+FinaviSession.get().getLoggedUser().getSurname();
 				} else {
-					return "Neprihásený používateľ";
+					return "Neprihlásený používateľ";
 				}
 			}
 		};
