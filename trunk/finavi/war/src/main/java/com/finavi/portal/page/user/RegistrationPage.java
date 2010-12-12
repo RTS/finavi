@@ -4,13 +4,14 @@ import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import com.finavi.model.User;
-import com.finavi.portal.page.base.BasePage;
+import com.finavi.portal.page.base.AutheticatedPage;
 import com.finavi.portal.service.FinaviService;
 
-public class RegistrationPage extends BasePage{
+public class RegistrationPage extends AutheticatedPage{
 	
 	public RegistrationPage() {
 		Form<User> form = new Form<User>("registrationForm",new CompoundPropertyModel<User>(new User())){
@@ -55,6 +56,8 @@ public class RegistrationPage extends BasePage{
 		form.add(highestEducation);
 		form.add(employment);
 		form.add(alreadyClientOfBank);
+		
+		form.add(new FeedbackPanel("feedbackPanel"));
 		
 		add(form);
 		

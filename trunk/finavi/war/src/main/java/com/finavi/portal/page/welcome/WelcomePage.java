@@ -9,6 +9,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.BasePage;
+import com.finavi.portal.page.user.ScoringTablePage;
 import com.finavi.portal.service.FinaviService;
 
 public class WelcomePage extends BasePage{
@@ -27,6 +28,13 @@ public class WelcomePage extends BasePage{
 				try {
 					user = FinaviService.getUserService().login(model.getObject().getEmail(), model.getObject().getPassword());
 					((FinaviSession)getSession()).setLoggedUser(user);
+					
+					if (User.isUserInRole(user, "user")) {
+						setResponsePage(ScoringTablePage.class);
+					}
+					if (User.isUserInRole(user, "agent")) {
+						setResponsePage(ScoringTablePage.class);
+					}
 				} catch (Exception e) {
 					this.error("Nesprávne meno alebo heslo!");
 				}
@@ -42,5 +50,7 @@ public class WelcomePage extends BasePage{
 		
 		add(form);
 	}
-
+	
+	
+	
 }

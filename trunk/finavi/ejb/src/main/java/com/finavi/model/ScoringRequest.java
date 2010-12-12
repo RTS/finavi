@@ -1,6 +1,11 @@
 package com.finavi.model;
 
-public class ScoringRequest {
+import java.io.Serializable;
+
+public class ScoringRequest implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private User applicant;
 	
 	private long age;
@@ -38,7 +43,10 @@ public class ScoringRequest {
 	private String employment;
 	
 	private String currentHousing;
-
+	
+	public ScoringRequest() {
+	}
+	
 	public ScoringRequest(User applicant, long age, double incomeOfApplicant,
 			double expensesOfApplicant, double loanAmount,
 			long repaymentPeriod, long fixation, double realPropertyValue,
