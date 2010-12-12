@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 @Entity
 public class User implements Serializable{
@@ -51,6 +52,9 @@ public class User implements Serializable{
 	private String employment;
 	
 	private boolean alreadyClientOfBank;
+	
+	@OneToMany(mappedBy="applicant")
+    private Set<Scoring> scorings;
 	
 	private long clientSinceYear;
 	@OneToOne(optional=true)
@@ -232,6 +236,14 @@ public class User implements Serializable{
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public void setScorings(Set<Scoring> scorings) {
+		this.scorings = scorings;
+	}
+
+	public Set<Scoring> getScorings() {
+		return scorings;
 	}
 	
 }

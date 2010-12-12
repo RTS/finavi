@@ -17,6 +17,7 @@ import com.finavi.model.LivingWages;
 import com.finavi.model.Loan;
 import com.finavi.model.LoanConditions;
 import com.finavi.model.LoanFee;
+import com.finavi.model.Role;
 import com.finavi.model.User;
 @Remote(value=TestBeanRemote.class)
 @Stateless(name="TestBean")
@@ -41,6 +42,10 @@ public class TestBean implements TestBeanLocal {
 		m.addVariable("x", 15.1d);
 		System.out.println( m.getValue() );
 		 
+	}
+	
+	public void save(Object o){
+		em.persist(o);
 	}
 
 	@Override
@@ -76,7 +81,6 @@ public class TestBean implements TestBeanLocal {
 		Set<LivingWages> list = new HashSet<LivingWages>();
 		list.add(lw2);
 		list.add(lw1);
-		l.setLivingWagesRates(list);
 		LoanConditions cond = new LoanConditions();
 		cond.setFixation(1);
 		cond.setInterestRateNoClient(1.5d);
@@ -101,5 +105,15 @@ public class TestBean implements TestBeanLocal {
 		em.persist(l);
 		b.setLoan(l);
 		em.persist(b);
+	}
+
+	@Override
+	public <T>Object getById(Class<T> clazz , long id){
+		return em.find(clazz, id);
+	}
+	
+	@Override
+	public Role getRoleById(long id){
+		return em.find(Role.class, id);
 	}
 }

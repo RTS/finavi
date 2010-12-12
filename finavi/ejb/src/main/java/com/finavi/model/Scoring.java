@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 @Entity
 public class Scoring implements Serializable{
@@ -13,8 +14,8 @@ public class Scoring implements Serializable{
 	private static final long serialVersionUID = 5523235066303002575L;
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	@OneToOne
-	private User client;
+	@ManyToOne
+	private User applicant;
 	@OneToOne
 	private Bank bank;
 	
@@ -62,6 +63,8 @@ public class Scoring implements Serializable{
 	
 	private String denialReason;
 	
+	private boolean approved;
+	
 	public Scoring() {
 		
 	}
@@ -74,12 +77,12 @@ public class Scoring implements Serializable{
 		this.id = id;
 	}
 
-	public User getClient() {
-		return client;
+	public User getApplicant() {
+		return applicant;
 	}
 
-	public void setClient(User client) {
-		this.client = client;
+	public void setApplicant(User applicant) {
+		this.applicant = applicant;
 	}
 
 	public Bank getBank() {
@@ -264,5 +267,13 @@ public class Scoring implements Serializable{
 
 	public String getDenialReason() {
 		return denialReason;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
+	public boolean isApproved() {
+		return approved;
 	}
 }
