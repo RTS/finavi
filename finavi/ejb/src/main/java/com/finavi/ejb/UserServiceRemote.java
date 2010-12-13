@@ -54,7 +54,7 @@ public interface UserServiceRemote {
 	 * @param user Udaje o pouzivatelovi. 
 	 * @return vrati ci prebehla v poriadku.
 	 */
-	public boolean register(User user);
+	public User register(User user);
 	/**
 	 * User login. 
 	 * 

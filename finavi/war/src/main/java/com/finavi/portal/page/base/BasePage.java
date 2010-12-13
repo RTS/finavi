@@ -9,6 +9,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.user.ScoringRequestFormPage;
+import com.finavi.portal.page.user.ScoringTablePage;
 import com.finavi.portal.page.user.UserTablePage;
 import com.finavi.portal.page.welcome.WelcomePage;
 
@@ -80,7 +81,12 @@ public class BasePage extends WebPage{
 			
 			@Override
 			public boolean isVisible() {
-				return FinaviSession.get().isAuthenticated();
+				if (FinaviSession.get().isAuthenticated()){
+					User u = FinaviSession.get().getLoggedUser();
+					return User.isUserInRole(u, "user");
+				}else {
+					return false;
+				}
 			}
 		});
 
@@ -104,6 +110,26 @@ public class BasePage extends WebPage{
 				}
 			}
 		});
+		
+		
+		add(new Link<String>("myScoringLink") {
 
+			private static final long serialVersionUID = 1235674532L;
+
+			public void onClick() {
+				setRedirect(true);
+				setResponsePage(ScoringTablePage.class);
+			} 
+			
+			@Override
+			public boolean isVisible() {
+				if (FinaviSession.get().isAuthenticated()){
+					User u = FinaviSession.get().getLoggedUser();
+					return User.isUserInRole(u, "user");
+				}else {
+					return false;
+				}
+			}
+		});
 	}
 }

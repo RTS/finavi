@@ -91,14 +91,15 @@ public class UserServiceBean implements UserServiceLocal {
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public boolean register(User user) {
+	public User register(User user) {
 		Set<Role> defRoles = new HashSet<Role>();
 		defRoles.add(em.find(Role.class, 1l));
 		user.setRoles(defRoles);
-		if (add(user)!=null){
-			return true;
+		Object object = add(user);
+		if (object!=null){
+			return (User)object;
 		}
-		return false;
+		return null;
 	}
 
 	@Override
