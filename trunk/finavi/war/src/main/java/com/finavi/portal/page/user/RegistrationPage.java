@@ -1,6 +1,10 @@
 package com.finavi.portal.page.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
@@ -36,7 +40,13 @@ public class RegistrationPage extends BasePage{
 		TextField<String> name = new TextField<String>("name");
 		TextField<String> surname = new TextField<String>("surname");
 		DateTextField dateOfBirth = new DateTextField("dateOfBirth","dd.MM.yyyy");
-		TextField<Character> sex = new TextField<Character>("sex");
+		
+//		TextField<Character> sex = new TextField<Character>("sex");
+		List<Character> list2 = new ArrayList<Character>();
+		list2.add(new Character('M'));
+		list2.add(new Character('Z'));
+		DropDownChoice<Character> sex = new DropDownChoice<Character>("sex", list2);
+		
 		TextField<String> personalNumber = new TextField<String>("personalNumber");
 		TextField<String> street = new TextField<String>("street");
 		TextField<String> streetNumber = new TextField<String>("streetNumber");
