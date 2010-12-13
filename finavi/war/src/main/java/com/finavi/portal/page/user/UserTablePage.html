@@ -2,13 +2,18 @@
 	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.5-strict.dtd">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>FiNavi - zoznam použivateľov </title>
+
 </head>
 <body>
 <wicket:extend>
 	<table wicket:id="userListTable">
 	</table>
+	<div id="userButtons">
 	<input wicket:id="exportExcel" type="button" value="Export"/>
+	<a onclick="print_preview(); return false;" href="#">Print this page</a>
+	</div>
 </wicket:extend>
 </body>
 </html>
