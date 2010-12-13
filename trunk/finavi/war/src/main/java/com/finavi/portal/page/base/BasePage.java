@@ -52,7 +52,6 @@ public class BasePage extends WebPage{
 			private static final long serialVersionUID = 1123152453L;
 
 			public void onClick() {
-				getSession().invalidate();
 				setRedirect(true);
 				setResponsePage(WelcomePage.class);
 			} 
@@ -73,7 +72,6 @@ public class BasePage extends WebPage{
 			private static final long serialVersionUID = 1235674532L;
 
 			public void onClick() {
-				getSession().invalidate();
 				setRedirect(true);
 				setResponsePage(WelcomePage.class);
 			} 
@@ -90,7 +88,6 @@ public class BasePage extends WebPage{
 			private static final long serialVersionUID = 1235674532L;
 
 			public void onClick() {
-				getSession().invalidate();
 				setRedirect(true);
 				setResponsePage(WelcomePage.class);
 			} 

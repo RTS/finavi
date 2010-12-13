@@ -24,6 +24,11 @@ public class WelcomePage extends BasePage {
 			private static final long serialVersionUID = 1L;
 
 			@Override
+			public boolean isVisible() {
+				return !FinaviSession.get().isAuthenticated();
+			}
+
+			@Override
 			protected void onSubmit() {
 				User user = null;
 				try {
@@ -32,7 +37,7 @@ public class WelcomePage extends BasePage {
 							model.getObject().getPassword());
 					((FinaviSession) getSession()).setLoggedUser(user);
 					clearInput();
-					
+
 					if (User.isUserInRole(user, "user")) {
 						setResponsePage(ScoringTablePage.class);
 					}
@@ -50,10 +55,7 @@ public class WelcomePage extends BasePage {
 
 		form.add(loginField);
 		form.add(passwordField);
-
 		add(form);
 	}
-	
-	
-	
+
 }
