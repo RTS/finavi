@@ -44,8 +44,8 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 
 	@Override
 	public List<Scoring> calculateScorings(ScoringRequest request) {
+		clearPreviousScorings(request.getApplicant());
 		this.banks = bankService.getAll();
-		String denialReason;
 		List<Scoring> scorings = new ArrayList<Scoring>();
 		for (Bank bank : banks) {
 			Scoring scoring = getScoring(bank, request);
@@ -60,17 +60,24 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 		
 	}
 
+	private void clearPreviousScorings(User u) {
+		Query q = em.createQuery("delete from Scoring  where applicant = :user");
+		q.setParameter("user", u);
+		q.executeUpdate();
+		em.flush();
+	}
+
 	private Scoring getScoring(Bank bank, ScoringRequest request) {
 		Scoring scoring = new Scoring();
 		Loan loan = bank.getLoan();
 		scoring.setBank(bank);
 		scoring.setApplicant(request.getApplicant());
-		if (loan.getMaxAmount() > request.getLoanAmount()) {
+		if (loan.getMaxAmount() < request.getLoanAmount()) {
 			scoring.setDenialReason("Žiadaná suma je vyššia ako je maximálny možný úver: "
 					+ loan.getMaxAmount() + "€.");
 			return scoring;
 		}
-		if (loan.getMinAmount() < request.getLoanAmount()) {
+		if (loan.getMinAmount() >request.getLoanAmount()) {
 			scoring.setDenialReason("Žiadaná suma je nižšia ako je minimálny možný úver: "
 					+ loan.getMinAmount() + "€.");
 			return scoring;
@@ -125,7 +132,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 			double monthlyPayment = calculateMontlyPayment(loan, request,
 					matchedConditions);
 			if (monthlyPayment > maxPossibleMonthlyPayment) {
-				scoring.setDenialReason("Vypočítná mesačná splátka "
+				scoring.setDenialReason("Vypočítaná mesačná splátka "
 						+ monthlyPayment
 						+ "€ je vyššia ako vaša maximálna splátka "
 						+ maxPossibleMonthlyPayment + "€.");
@@ -134,7 +141,14 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 			scoring.setApproved(true);
 			scoring.setMonthlyPayment(monthlyPayment);
 			scoring.setRpmn(00);
-
+			scoring.setInterestRate(matchedConditions.getInterestRateNoClient());
+			scoring.setAccountFee(loan.getAccountManagementFee());
+			if(loan.getLoanFee().isBasedOnLoanAmount()){
+				scoring.setLoanProcessCharge(loan.getLoanFee().getFee()*request.getLoanAmount());
+			}else {
+				scoring.setLoanProcessCharge(loan.getLoanFee().getFee());
+			}
+			
 		}
 		return scoring;
 	}
@@ -150,7 +164,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 			interestRate = conditions.getInterestRateNoClient();
 		}
 		double exp = 12 * request.getRepaymentPeriod();
-		interestRate = interestRate / 12;
+		interestRate = interestRate / 1200;
 		double monthlyPayment = ((interestRate) + (interestRate / (Math.pow(
 				1 + interestRate, exp) - 1))) * request.getLoanAmount();
 		return monthlyPayment;
@@ -207,7 +221,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 	@Override
 	public List<Scoring> getActualScoringsOfUser(User u) {
 		List<Scoring> list = new ArrayList<Scoring>();
-		Query q = em.createQuery("from Scoring s where s.applicant = :user");
+		Query q = em.createQuery("select u.scorings from User u where u = :user");
 		q.setParameter("user", u);
 		list = (List<Scoring>) q.getResultList();
 		return list;

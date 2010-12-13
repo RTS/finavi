@@ -33,8 +33,7 @@ public class UserTablePage extends AutheticatedPage {
 			@Override
 			protected void onSubmit() {
 				System.out.println(getModelObject().getName()+" "+getModelObject().getSurname());
-				
-				//TODO: call qery
+				List<User> list = FinaviService.getUserService().search(getModelObject().getName(), getModelObject().getSurname());
 			}
 		};
 		TextField<String> name = new TextField<String>("name");

@@ -120,4 +120,8 @@ public class Bank implements Serializable{
 		this.loan = loan;
 	}
 
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }
