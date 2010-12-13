@@ -1,18 +1,19 @@
 package com.finavi.portal.page.user;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.wicket.RequestCycle;
+import org.apache.wicket.extensions.markup.html.repeater.data.grid.ICellPopulator;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.AbstractColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -21,7 +22,6 @@ import org.apache.wicket.request.target.component.ComponentRequestTarget;
 
 import com.finavi.model.User;
 import com.finavi.portal.page.base.AutheticatedPage;
-import com.finavi.portal.service.FinaviService;
 
 public class UserTablePage extends AutheticatedPage {
 
@@ -69,6 +69,20 @@ public class UserTablePage extends AutheticatedPage {
 				new Model<String>("Priezvisko"), "surname"));
 		collumns.add(new PropertyColumn<User>(new Model<String>("Email"),
 				"email"));
+		collumns.add(new AbstractColumn<User>(new Model<String>("Scorings"))
+			        {
+			            public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
+			                final IModel<User> model)
+			            {
+			                cellItem.add(new Link(componentId) {
+								@Override
+								public void onClick() {
+									setRedirect(true);
+									setResponsePage(new ScoringTablePage(model.getObject()));
+								}
+							});
+			            }
+			        });
 
 		final DefaultDataTable<User> userTable = new DefaultDataTable<User>(
 				"userListTable", collumns, provider, 30);
