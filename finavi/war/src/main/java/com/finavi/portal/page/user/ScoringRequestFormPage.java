@@ -14,7 +14,7 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 
 	public ScoringRequestFormPage() {
 		
-		Form<ScoringRequest> form = new Form<ScoringRequest>("registrationForm", new CompoundPropertyModel<ScoringRequest>(new ScoringRequest())){
+		Form<ScoringRequest> form = new Form<ScoringRequest>("scoringRequestForm", new CompoundPropertyModel<ScoringRequest>(new ScoringRequest())){
 			
 			private static final long serialVersionUID = 1L;
 
@@ -69,8 +69,6 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 		form.add(new FeedbackPanel("feedbackPanel"));
 		
 		add(form);
-		
-		
 		
 	}
 
