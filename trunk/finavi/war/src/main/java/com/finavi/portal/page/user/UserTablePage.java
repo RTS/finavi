@@ -20,20 +20,19 @@ import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.request.target.component.ComponentRequestTarget;
 
 import com.finavi.model.User;
-import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
-import com.finavi.portal.page.welcome.WelcomePage;
 import com.finavi.portal.service.FinaviService;
 
 public class UserTablePage extends AutheticatedPage {
 
 	public UserTablePage() {
 		
+		final UserDataProvider provider = new UserDataProvider();
+		
 		Form<User> form = new Form<User>("userSearchForm",new CompoundPropertyModel<User>(new User())){
 			@Override
 			protected void onSubmit() {
-				System.out.println(getModelObject().getName()+" "+getModelObject().getSurname());
-				List<User> list = FinaviService.getUserService().search(getModelObject().getName(), getModelObject().getSurname());
+				provider.filter(getModelObject().getName(), getModelObject().getSurname());
 			}
 		};
 		TextField<String> name = new TextField<String>("name");
@@ -42,27 +41,27 @@ public class UserTablePage extends AutheticatedPage {
 		form.add(surname);
 		add(form);
 		
-		SortableDataProvider<User> provider = new SortableDataProvider<User>() {
-
-			private static final long serialVersionUID = 1L;
-			List<User> list = new ArrayList<User>(FinaviService
-					.getUserService().getAll());
-
-			@Override
-			public Iterator<? extends User> iterator(int arg0, int arg1) {
-				return list.iterator();
-			}
-
-			@Override
-			public IModel<User> model(User arg0) {
-				return new Model<User>(arg0);
-			}
-
-			@Override
-			public int size() {
-				return list.size();
-			}
-		};
+//		SortableDataProvider<User> provider = new SortableDataProvider<User>() {
+//
+//			private static final long serialVersionUID = 1L;
+//			List<User> list = new ArrayList<User>(FinaviService
+//					.getUserService().getAll());
+//
+//			@Override
+//			public Iterator<? extends User> iterator(int arg0, int arg1) {
+//				return list.iterator();
+//			}
+//
+//			@Override
+//			public IModel<User> model(User arg0) {
+//				return new Model<User>(arg0);
+//			}
+//
+//			@Override
+//			public int size() {
+//				return list.size();
+//			}
+//		};
 
 		List<IColumn<User>> collumns = new ArrayList<IColumn<User>>();
 		collumns.add(new PropertyColumn<User>(new Model<String>("Meno"), "name"));
