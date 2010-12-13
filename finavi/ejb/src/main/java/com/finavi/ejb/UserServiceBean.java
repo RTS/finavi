@@ -109,7 +109,15 @@ public class UserServiceBean implements UserServiceLocal {
 
 	@Override
 	public List<User> search(String name, String surname) {
+		System.out.println(name + " " +surname);
+		if (name == null ) {
+			name = "";
+		} 
+		if (surname == null ) {
+			surname = "";
+		} 
 		Query q = em.createQuery("from User u where u.name like :name and u.surname like :surname");
+		
 		q.setParameter("name", name+"%");
 		q.setParameter("surname",surname+"%");
 		return ( List<User>)q.getResultList();
