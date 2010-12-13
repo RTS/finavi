@@ -10,6 +10,7 @@ import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.BasePage;
 import com.finavi.portal.page.user.ScoringTablePage;
+import com.finavi.portal.page.user.UserTablePage;
 import com.finavi.portal.service.FinaviService;
 
 public class WelcomePage extends BasePage {
@@ -42,7 +43,7 @@ public class WelcomePage extends BasePage {
 						setResponsePage(ScoringTablePage.class);
 					}
 					if (User.isUserInRole(user, "agent")) {
-						setResponsePage(ScoringTablePage.class);
+						setResponsePage(UserTablePage.class);
 					}
 				} catch (Exception e) {
 					this.error("Nesprávne meno alebo heslo!");
