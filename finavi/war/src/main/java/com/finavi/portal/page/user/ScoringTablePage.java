@@ -100,8 +100,8 @@ public class ScoringTablePage extends AutheticatedPage{
 		add(scoringTable);
 		
 		DefaultDataTable<Scoring> deniedScorignsTable = new DefaultDataTable<Scoring>("deniedScorignsTable", deniedTableCollumns, deniedScoringsProvider, 30);
-		scoringTable.add(new NavigationToolbar(deniedScorignsTable));
-		scoringTable.add(new HeadersToolbar(deniedScorignsTable,deniedScoringsProvider));
+		deniedScorignsTable.add(new NavigationToolbar(deniedScorignsTable));
+		deniedScorignsTable.add(new HeadersToolbar(deniedScorignsTable,deniedScoringsProvider));
 		
 		add(deniedScorignsTable);
 		
