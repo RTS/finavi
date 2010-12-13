@@ -1,0 +1,22 @@
+#header, #navigation {
+ display:none;
+}
+
+#main {
+ margin-left:0px;
+}
+
+#preview-message {
+ display:none;
+}
+body { 
+  padding: 0; 
+  background:none;
+}
+#userButtons {
+	display:none;
+}
+table { margin:10px 0; border: 0px solid #cdcdcd; border-collapse:collapse; border-spacing:0; font-size:100%; width: 100%;}
+th { text-align:center; font-weight:bold; border: 0px solid #cdcdcd;}
+th, td { padding:4px 6px; border: 0px solid #cdcdcd;text-align: center;}
+tr.table-top {background: #e5e5e5; font-weight: bold;}
