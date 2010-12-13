@@ -10,19 +10,39 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.request.target.component.ComponentRequestTarget;
 
 import com.finavi.model.User;
+import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
+import com.finavi.portal.page.welcome.WelcomePage;
 import com.finavi.portal.service.FinaviService;
 
 public class UserTablePage extends AutheticatedPage {
 
 	public UserTablePage() {
+		
+		Form<User> form = new Form<User>("userSearchForm",new CompoundPropertyModel<User>(new User())){
+			@Override
+			protected void onSubmit() {
+				System.out.println(getModelObject().getName()+" "+getModelObject().getSurname());
+				
+				//TODO: call qery
+			}
+		};
+		TextField<String> name = new TextField<String>("name");
+		TextField<String> surname = new TextField<String>("surname");
+		form.add(name);
+		form.add(surname);
+		add(form);
+		
 		SortableDataProvider<User> provider = new SortableDataProvider<User>() {
 
 			private static final long serialVersionUID = 1L;

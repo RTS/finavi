@@ -8,6 +8,29 @@
 </head>
 <body>
 <wicket:extend>
+	<form action="post" wicket:id="userSearchForm">
+	<table>
+		<tbody>
+				<tr class="important">
+					<td>
+						<label>Meno:</label>
+					</td>
+					<td>
+						<input wicket:id="name"/>
+					</td>
+					<td>
+						<label>Priezvisko:</label>
+					</td>
+					<td>
+						<input wicket:id="surname"/>
+					</td>
+					<td colspan="2">
+						<input type="submit" value="Hladaj">
+					</td>
+				</tr>
+		</tbody>
+	</table>
+	</form>
 	<table wicket:id="userListTable">
 	</table>
 	<div id="userButtons">
