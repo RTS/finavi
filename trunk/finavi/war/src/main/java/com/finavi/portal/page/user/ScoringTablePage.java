@@ -64,10 +64,22 @@ public class ScoringTablePage extends AutheticatedPage {
 					FinaviService.getMorgageService()
 							.getActualScoringsOfUser(user));
 
+			List<Scoring> realList = setRealList();
+
+			private List<Scoring> setRealList() {
+				List<Scoring> approved = new ArrayList<Scoring>();
+				for (Scoring s : list) {
+					if (s.isApproved()) {
+						approved.add(s);
+					}
+				}
+				return approved;
+			}
+
 			@Override
 			public Iterator<? extends Scoring> iterator(
 					int arg0, int arg1) {
-				return list.iterator();
+				return realList.iterator();
 			}
 
 			@Override
@@ -77,7 +89,7 @@ public class ScoringTablePage extends AutheticatedPage {
 
 			@Override
 			public int size() {
-				return list.size();
+				return realList.size();
 			}
 		};
 		DefaultDataTable<Scoring> scoringTable = new DefaultDataTable<Scoring>(

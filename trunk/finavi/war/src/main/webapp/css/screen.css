@@ -143,12 +143,17 @@ p { margin:10px 0 15px 0; line-height: 24px; font-size: 95%}
 
 .content p {color: #fff; margin-top: 10px;}
 
+.formtable {
+	width:30%;
+}
+
 .styledtable table
 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	background: #fff;
 	margin-top: 20px;
+	width: 100%;
 	
 	border-collapse: collapse;
 	text-align: left;

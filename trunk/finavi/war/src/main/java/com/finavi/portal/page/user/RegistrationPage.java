@@ -24,10 +24,12 @@ public class RegistrationPage extends BasePage{
 			@Override
 			protected void onSubmit() {
 				System.out.println(getModelObject().getCity());
-				System.out.println(FinaviService.getUserService().register(getModelObject()));
+				User u = FinaviService.getUserService().register(getModelObject());
+				if (u!=null){
+					((FinaviSession) getSession()).setLoggedUser(u);
+					setResponsePage(ScoringTablePage.class);
+				}
 				
-				((FinaviSession) getSession()).setLoggedUser(getModelObject());
-				setResponsePage(WelcomePage.class);
 			}
 		};
 		

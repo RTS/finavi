@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -219,6 +221,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 	}
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public List<Scoring> getActualScoringsOfUser(User u) {
 		List<Scoring> list = new ArrayList<Scoring>();
 		Query q = em.createQuery("select u.scorings from User u where u = :user");

@@ -81,6 +81,7 @@ public class UserTablePage extends AutheticatedPage {
 									setResponsePage(new ScoringTablePage(model.getObject()));
 								}
 							});
+			               
 			            }
 			        });
 
