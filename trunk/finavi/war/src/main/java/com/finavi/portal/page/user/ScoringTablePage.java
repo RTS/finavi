@@ -91,17 +91,16 @@ public class ScoringTablePage extends AutheticatedPage{
 		//collumns.add(new PropertyColumn<Scoring>(new Model<String>("Povolenie"), "approved"));
 		
 		DefaultDataTable<Scoring> scoringTable = new DefaultDataTable<Scoring>("scoringTable", collumns, provider, 30);
-		scoringTable.add(new NavigationToolbar(scoringTable));
-		scoringTable.add(new HeadersToolbar(scoringTable,provider));
+		scoringTable.addTopToolbar(new NavigationToolbar(scoringTable));
+		//scoringTable.add(new HeadersToolbar(scoringTable,provider));
 		
 		List<IColumn<Scoring>> deniedTableCollumns = new ArrayList<IColumn<Scoring>>();
-		collumns.add(new PropertyColumn<Scoring>(new Model<String>("Banka"), "bank"));
-		collumns.add(new PropertyColumn<Scoring>(new Model<String>("Dôvod zamietnutia"), "denialReason"));
+		deniedTableCollumns.add(new PropertyColumn<Scoring>(new Model<String>("Banka"), "bank"));
+		deniedTableCollumns.add(new PropertyColumn<Scoring>(new Model<String>("Dôvod zamietnutia"), "denialReason"));
 		add(scoringTable);
 		
-		DefaultDataTable<Scoring> deniedScorignsTable = new DefaultDataTable<Scoring>("deniedScorignsTable", deniedTableCollumns, deniedScoringsProvider, 30);
-		deniedScorignsTable.add(new NavigationToolbar(deniedScorignsTable));
-		deniedScorignsTable.add(new HeadersToolbar(deniedScorignsTable,deniedScoringsProvider));
+		DefaultDataTable<Scoring> deniedScorignsTable = new DefaultDataTable<Scoring>("deniedScoringsTable", deniedTableCollumns, deniedScoringsProvider, 30);
+		deniedScorignsTable.addTopToolbar(new NavigationToolbar(deniedScorignsTable));
 		
 		add(deniedScorignsTable);
 		

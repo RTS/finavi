@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -17,7 +18,6 @@ import com.finavi.portal.service.FinaviService;
 
 public class UserTablePage extends AutheticatedPage {
 
-	
 	public UserTablePage() {
 		SortableDataProvider<User> provider = new SortableDataProvider<User>() {
 
@@ -42,12 +42,11 @@ public class UserTablePage extends AutheticatedPage {
 		};
 
 		List<IColumn<User>> collumns = new ArrayList<IColumn<User>>();
-		collumns.add(new PropertyColumn<User>(new Model<String>("name"),
-				"name"));
-		collumns.add(new PropertyColumn<User>(new Model<String>("surname"),
-		"surname"));
-		collumns.add(new PropertyColumn<User>(new Model<String>("email"),
-		"email"));
+		collumns.add(new PropertyColumn<User>(new Model<String>("Meno"), "name"));
+		collumns.add(new TextFilteredPropertyColumn<User, String>(
+				new Model<String>("Priezvisko"), "surname"));
+		collumns.add(new PropertyColumn<User>(new Model<String>("Email"),
+				"email"));
 
 		DefaultDataTable<User> userTable = new DefaultDataTable<User>(
 				"userListTable", collumns, provider, 30);
