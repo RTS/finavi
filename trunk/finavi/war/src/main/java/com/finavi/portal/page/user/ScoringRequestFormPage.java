@@ -1,5 +1,6 @@
 package com.finavi.portal.page.user;
 
+import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -41,7 +42,9 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 		TextField<Integer> numberOfDependentChildren = new TextField<Integer>("numberOfDependentChildren");
 		TextField<String> realPropertyType = new TextField<String>("realPropertyType");
 		TextField<Integer> numberOfAdultPersons = new TextField<Integer>("numberOfAdultPersons");
-		TextField<Boolean> coApplicant = new TextField<Boolean>("coApplicant");
+		CheckBox coApplicant = new CheckBox("coApplicant");
+		
+		
 		TextField<Double> incomeOfCoApplicant = new TextField<Double>("incomeOfCoApplicant");
 		TextField<Double> expensesOfCoApplicant = new TextField<Double>("expensesOfCoApplicant");
 		TextField<String> highestEducation = new TextField<String>("highestEducation");
