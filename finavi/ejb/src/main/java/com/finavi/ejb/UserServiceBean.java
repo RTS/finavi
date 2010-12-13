@@ -13,6 +13,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.finavi.ejb.eao.UserEAO;
 import com.finavi.model.Role;
@@ -103,6 +104,15 @@ public class UserServiceBean implements UserServiceLocal {
 	@Override
 	public User login(String email, String password) {
 		return getEAO().findByEmailAndPassword(email,password);
+	}
+
+
+	@Override
+	public List<User> search(String name, String surname) {
+		Query q = em.createQuery("from User u where u.name like :name and u.surname like :surname");
+		q.setParameter("name", name+"%");
+		q.setParameter("surname",surname+"%");
+		return ( List<User>)q.getResultList();
 	}
 
 }

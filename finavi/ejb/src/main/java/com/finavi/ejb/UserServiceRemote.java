@@ -63,5 +63,11 @@ public interface UserServiceRemote {
 	 * @return Vrati instanciu pouzivatela ak prihlasenie prebehlo ok, Inak vrati Null;
 	 */
 	public User login(String email, String password);
-	
+	/**
+	 * Vyhladavanie v databaze podla mena a priezviska.
+	 * @param name krstne meno alebo cast
+	 * @param surname priezvisko alebo jeho cast.
+	 * @return list pouzivatelov ktory vyhovuju kriteriam.
+	 */
+	public List<User> search(String name, String surname);
 }

@@ -54,7 +54,7 @@ public class User implements Serializable{
 	
 	private boolean alreadyClientOfBank;
 	
-	@OneToMany(mappedBy="applicant")
+	@OneToMany(mappedBy="applicant", cascade=CascadeType.ALL)
     private Set<Scoring> scorings;
 	
 	private long clientSinceYear;
