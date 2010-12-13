@@ -77,8 +77,13 @@ public class UserTablePage extends AutheticatedPage {
 
 		add(userTable);
 		
-		Link exportExcel = new Link("exportExcel") {
-            @Override
+		Link<String> exportExcel = new Link<String>("exportExcel") {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
             public void onClick() {
                 getRequestCycle().setRequestTarget(new ComponentRequestTarget(userTable) {
                 	@Override
@@ -92,7 +97,7 @@ public class UserTablePage extends AutheticatedPage {
                 WebResponse wr = (WebResponse) getResponse();
                 wr.setContentType("application/vnd.ms-excel; charset=UTF-8");
                 wr.setCharacterEncoding("UTF-8");
-                wr.setHeader("content-disposition", "attachment;filename=excel.xls");
+                wr.setHeader("content-disposition", "attachment;filename=export.xls");
             }
 		};
 		add(exportExcel);

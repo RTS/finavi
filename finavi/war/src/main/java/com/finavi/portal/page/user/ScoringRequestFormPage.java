@@ -8,6 +8,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import com.finavi.model.ScoringRequest;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
+import com.finavi.portal.page.welcome.WelcomePage;
 import com.finavi.portal.service.FinaviService;
 
 public class ScoringRequestFormPage extends AutheticatedPage{
@@ -23,6 +24,7 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 				ScoringRequest request = getModelObject();
 				request.setApplicant(FinaviSession.get().getLoggedUser());
 				FinaviService.getMorgageService().calculateScorings(request);
+				setResponsePage(ScoringTablePage.class);
 			}
 			
 		};

@@ -8,7 +8,7 @@
 </head>
 <body>
 <wicket:extend>
-	<form action="post" wicket:id="userSearchForm">
+<form action="post" wicket:id="userSearchForm">
 	<table>
 		<tbody>
 				<tr class="important">
@@ -31,12 +31,13 @@
 		</tbody>
 	</table>
 	</form>
-	<table wicket:id="userListTable">
-	</table>
-	<div id="userButtons">
-	<input wicket:id="exportExcel" type="button" value="Export"/>
-	<a onclick="print_preview(); return false;" href="#">Print this page</a>
+<div id="userButtons">
+	<a href="#" wicket:id="exportExcel" >Export záznamov do MS Excel</a><br/>
+	
 	</div>
+	<table wicket:id="userListTable" class="styledtable">
+	</table>
+	
 </wicket:extend>
 </body>
 </html>

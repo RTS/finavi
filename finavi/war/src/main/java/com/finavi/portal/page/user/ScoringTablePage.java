@@ -49,9 +49,22 @@ public class ScoringTablePage extends AutheticatedPage{
 			
 			private static final long serialVersionUID = 1L;
 			List<Scoring> list = new ArrayList<Scoring>(FinaviService.getMorgageService().getActualScoringsOfUser(FinaviSession.get().getLoggedUser()));
+			List<Scoring> realList = setRealList();
+			
+			private List<Scoring>  setRealList(){
+				List<Scoring> denied = new ArrayList<Scoring>();
+				for (Scoring s: list){
+					if(!s.isApproved()){
+						realList.add(s);
+					}
+				}
+				return denied;
+			}
+			
+			
 			@Override
 			public Iterator<? extends Scoring> iterator(int arg0, int arg1) {
-				return list.iterator();
+				return realList.iterator();
 			}
 
 			@Override
@@ -61,8 +74,9 @@ public class ScoringTablePage extends AutheticatedPage{
 
 			@Override
 			public int size() {
-				return list.size();
+				return realList.size();
 			}
+			
 		};
 		
 		List<IColumn<Scoring>> collumns = new ArrayList<IColumn<Scoring>>();
