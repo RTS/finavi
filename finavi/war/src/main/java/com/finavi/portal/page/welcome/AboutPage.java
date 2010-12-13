@@ -6,8 +6,9 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import com.finavi.model.User;
 import com.finavi.portal.page.base.BasePage;
 
-public class AboutPage extends BasePage {
+public class AboutPage extends WelcomePage {
 	public AboutPage() {
+		super();
 		final CompoundPropertyModel<User> model = new CompoundPropertyModel<User>(
 				new User());
 
