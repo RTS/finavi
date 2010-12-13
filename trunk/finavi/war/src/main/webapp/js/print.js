@@ -12,30 +12,32 @@ function addLoadEvent(func) {
   }
 }
 
-addLoadEvent( function(){ add_print_link( 'nav' ) } );
+addLoadEvent( function(){ add_print_link( 'userButtons' ) } );
 
 function add_print_link( id ){
   if( !document.getElementById ||
       !document.getElementById( id ) ) return;
-
   // add extra functions to page tools list
   var print_page = document.getElementById( id );
-
+  
+  var print_function_link = document.createElement('a');
+  print_function_link.onclick =  function(){ print_preview(); return false; };
+  print_function_link.setAttribute('href', '#');	
+  var print_function_link_text = document.createTextNode('Zobrazi≈• n√°hƒæad a Tlaƒçi≈•');
+  print_function_link.appendChild(print_function_link_text);
   // create print link
-  var print_function = document.createElement('p');
-  print_function.className = 'print-link';
-  print_function.onclick = function(){ print_preview(); return false; };
-  print_function.appendChild( document.createTextNode( 'Print the Page' ) );
-
+  //var print_function = document.createElement('p');
+  //print_function.className = 'print-link';
+  //print_function.onclick = function(){ print_preview(); return false; };
+  //print_function.appendChild( document.createTextNode( 'Tlacit' ) );
+  print_page.appendChild(print_function_link)
 }
 
 function print_preview() {
 	// Switch the stylesheet
 	setActiveStyleSheet('Print Preview');
-	
 	// Create preview message
 	add_preview_message();
-
 	// Print the page
 	window.print();
 }
@@ -51,26 +53,21 @@ var main_body = main_content.parentNode;
 	
 		// Create Heading
 		var preview_header = document.createElement('h3');
-		var preview_header_text = document.createTextNode('N·hæad str·nky pred tlaËou.');
+		var preview_header_text = document.createTextNode('N√°hƒæad str√°nky pred tlaƒçou.');
 		preview_header.appendChild(preview_header_text);
-		
 		// Create paragraph
-		var preview_para = document.createElement('p');
-		var preview_para_text = document.createTextNode('Samozrejme okrem tejto spr·vy. ');
-		
+		/*var preview_para = document.createElement('p');
 		var cancel_function_link = document.createElement('a');
 			cancel_function_link.onclick = function(){ cancel_print_preview(); return false; };
 			cancel_function_link.setAttribute('href', '#');	
-		var cancel_function_link_text = document.createTextNode('N·vrat na pÙvodn˙ str·nku.');
+		var cancel_function_link_text = document.createTextNode('Pr√≠padne sa vr√°≈•te na p√¥vodnu str√°nku.');
 		cancel_function_link.appendChild(cancel_function_link_text);
 		preview_para.appendChild(preview_para_text); //
-		preview_para.appendChild(cancel_function_link);
-		
+		preview_para.appendChild(cancel_function_link);*/
 		// Put it all toegether
 		preview_message.appendChild(preview_header); 
-		preview_message.appendChild(preview_para);
+		//preview_message.appendChild(preview_para);
 		main_body.insertBefore(preview_message, main_content);
-
 	}
 }
 
