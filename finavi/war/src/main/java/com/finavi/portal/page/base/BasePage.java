@@ -8,6 +8,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
+import com.finavi.portal.page.user.UserTablePage;
 import com.finavi.portal.page.welcome.WelcomePage;
 
 public class BasePage extends WebPage{
@@ -53,7 +54,7 @@ public class BasePage extends WebPage{
 
 			public void onClick() {
 				setRedirect(true);
-				setResponsePage(WelcomePage.class);
+				setResponsePage(UserTablePage.class);
 			} 
 			
 			@Override
