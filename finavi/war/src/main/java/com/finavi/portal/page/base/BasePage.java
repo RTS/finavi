@@ -8,6 +8,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
+import com.finavi.portal.page.bank.BankEvidencePage;
 import com.finavi.portal.page.user.ScoringRequestFormPage;
 import com.finavi.portal.page.user.ScoringTablePage;
 import com.finavi.portal.page.user.UserTablePage;
@@ -97,7 +98,7 @@ public class BasePage extends WebPage{
 
 			public void onClick() {
 				setRedirect(true);
-				setResponsePage(WelcomePage.class);
+				setResponsePage(BankEvidencePage.class);
 			} 
 			
 			@Override

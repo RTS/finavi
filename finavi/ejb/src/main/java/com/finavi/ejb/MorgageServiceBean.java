@@ -23,6 +23,7 @@ import com.finavi.model.Bank;
 import com.finavi.model.LivingWages;
 import com.finavi.model.Loan;
 import com.finavi.model.LoanConditions;
+import com.finavi.model.LoanFee;
 import com.finavi.model.Scoring;
 import com.finavi.model.ScoringRequest;
 import com.finavi.model.User;
@@ -59,11 +60,12 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 		u.setScorings(set);
 		em.merge(u);
 		return scorings;
-		
+
 	}
 
 	private void clearPreviousScorings(User u) {
-		Query q = em.createQuery("delete from Scoring  where applicant = :user");
+		Query q = em
+				.createQuery("delete from Scoring  where applicant = :user");
 		q.setParameter("user", u);
 		q.executeUpdate();
 		em.flush();
@@ -79,7 +81,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 					+ loan.getMaxAmount() + "€.");
 			return scoring;
 		}
-		if (loan.getMinAmount() >request.getLoanAmount()) {
+		if (loan.getMinAmount() > request.getLoanAmount()) {
 			scoring.setDenialReason("Žiadaná suma je nižšia ako je minimálny možný úver: "
 					+ loan.getMinAmount() + "€.");
 			return scoring;
@@ -142,15 +144,15 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 			}
 			scoring.setApproved(true);
 			scoring.setMonthlyPayment(monthlyPayment);
-			scoring.setRpmn(00);
 			scoring.setInterestRate(matchedConditions.getInterestRateNoClient());
 			scoring.setAccountFee(loan.getAccountManagementFee());
-			if(loan.getLoanFee().isBasedOnLoanAmount()){
-				scoring.setLoanProcessCharge(loan.getLoanFee().getFee()*request.getLoanAmount());
-			}else {
+			if (loan.getLoanFee().isBasedOnLoanAmount()) {
+				scoring.setLoanProcessCharge(loan.getLoanFee().getFee()
+						* request.getLoanAmount());
+			} else {
 				scoring.setLoanProcessCharge(loan.getLoanFee().getFee());
 			}
-			
+			scoring.setRpmn(rpmn(request.getRepaymentPeriod(), monthlyPayment, loan.getAccountManagementFee(), request.getLoanAmount(), scoring.getLoanProcessCharge()));
 		}
 		return scoring;
 	}
@@ -165,11 +167,13 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 		} else {
 			interestRate = conditions.getInterestRateNoClient();
 		}
-		double exp = 12 * request.getRepaymentPeriod();
 		interestRate = interestRate / 1200;
+		return pmt(interestRate, 12*request.getRepaymentPeriod(), request.getLoanAmount());
+		/*double exp = 12 * request.getRepaymentPeriod();
+		
 		double monthlyPayment = ((interestRate) + (interestRate / (Math.pow(
 				1 + interestRate, exp) - 1))) * request.getLoanAmount();
-		return monthlyPayment;
+		return monthlyPayment;*/
 	}
 
 	private double calculateBilance(ScoringRequest request) {
@@ -224,44 +228,47 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public List<Scoring> getActualScoringsOfUser(User u) {
 		List<Scoring> list = new ArrayList<Scoring>();
-		Query q = em.createQuery("select u.scorings from User u where u = :user");
+		Query q = em
+				.createQuery("select u.scorings from User u where u = :user");
 		q.setParameter("user", u);
 		list = (List<Scoring>) q.getResultList();
 		return list;
 	}
 
-	private static double FINANCIAL_PRECISION = 0.0000001d;
-	private static double FINANCIAL_MAX_ITERATIONS = 100;
-
-	public static double Rate(double npr, double pmt, double Pv, double Fv,
-			double guess, double error) {
-		double rate = 0.01;
-
-		if (guess > 0)
-			rate = guess / 100;
-		double a = 0.0;
-		if (pmt == 0) {
-			return (Math.pow(Fv / Pv, 1 / npr) - 1) * 100;
-		} else {
-			while (1 == 1) {
-				a = Pv * rate * Math.pow((1 + rate), npr)
-						/ (Math.pow(1 + rate, npr) - 1);
-				System.out.println(a);
-				if (Math.abs(a - pmt) < error) {
-					return rate * 100;
-				} else if (Math.abs(a) > pmt) {
-					rate -= 0.00001;
-				} else {
-					rate += 0.00001;
-				}
-			}
+	private double pmt(double monthlyInterestRate,
+			double numberOfMonthlyPayments, double loan) {
+		if (numberOfMonthlyPayments <= 0.0D)
+			return loan;
+		if (numberOfMonthlyPayments <= 1.0D)
+			return loan * (1.0D + monthlyInterestRate);
+		if (monthlyInterestRate == 0.0D)
+			return loan / numberOfMonthlyPayments;
+		return loan
+				* monthlyInterestRate
+				/ (1.0D - Math.pow(1.0D + monthlyInterestRate,
+						numberOfMonthlyPayments * -1.0D));
+	}
+	
+	private double rate(double noOfpayments, double payment,
+			double loan) {
+		double interestRate = 0.0D;
+		double d2 = 2D;
+		double d3 = payment;
+		for (int i = 1; i < 500; i++) {
+			d3 = pmt(interestRate, noOfpayments, loan);
+			if (d3 == payment)
+				return interestRate;
+			if (d3 < payment)
+				interestRate += d2;
+			else
+				interestRate -= d2;
+			d2 /= 2.0D;
 		}
-
-	}// function RATE()
-
-	public static void main(String[] args) {
-		System.out.println(MorgageServiceBean.Rate(12,1000,10000,12000,0,0.00001));
-		System.out.println(Finance.rate(12, 1000, 10000, 0, 0));
+		return interestRate;
 	}
 
+	
+	private double rpmn(long l, double payment, double accManagementFee, double loan, double loanFee){
+		return Math.pow((1+rate(l*12, payment+accManagementFee, loan-loanFee)),12)-1;
+	}
 }

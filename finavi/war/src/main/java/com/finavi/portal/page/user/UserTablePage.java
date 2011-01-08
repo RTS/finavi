@@ -13,6 +13,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextF
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -30,6 +31,8 @@ public class UserTablePage extends AutheticatedPage {
 		final UserDataProvider provider = new UserDataProvider();
 		
 		Form<User> form = new Form<User>("userSearchForm",new CompoundPropertyModel<User>(new User())){
+			private static final long serialVersionUID = -932846177693018756L;
+
 			@Override
 			protected void onSubmit() {
 				provider.filter(getModelObject().getName(), getModelObject().getSurname());
@@ -69,7 +72,7 @@ public class UserTablePage extends AutheticatedPage {
 				new Model<String>("Priezvisko"), "surname"));
 		collumns.add(new PropertyColumn<User>(new Model<String>("Email"),
 				"email"));
-		collumns.add(new AbstractColumn<User>(new Model<String>("Scorings"))
+		/*collumns.add(new AbstractColumn<User>(new Model<String>("Scorings"))
 			        {
 			            public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
 			                final IModel<User> model)
@@ -83,8 +86,15 @@ public class UserTablePage extends AutheticatedPage {
 							});
 			               
 			            }
-			        });
+			        });*/
+		collumns.add(new AbstractColumn<User>(new Model<String>("scoring")) {
+			private static final long serialVersionUID = -5381908354274974884L;
 
+			public void populateItem(Item<ICellPopulator<User>> cellItem,
+					String componentId, IModel<User> model) {
+				cellItem.add(new ActionPanel(componentId, model));
+			}
+		});
 		final DefaultDataTable<User> userTable = new DefaultDataTable<User>(
 				"userListTable", collumns, provider, 30);
 
@@ -114,5 +124,16 @@ public class UserTablePage extends AutheticatedPage {
             }
 		};
 		add(exportExcel);
+	}
+	class ActionPanel extends Panel {
+		public ActionPanel(String id, IModel model) {
+			super(id, model);
+			add(new Link("scoring") {
+				public void onClick() {
+					setRedirect(true);
+					setResponsePage(new ScoringTablePage((User) getParent().getDefaultModelObject()));
+				}
+			});
+		}
 	}
 }

@@ -57,7 +57,7 @@ public class RegistrationPage extends BasePage{
 		PasswordTextField password = new PasswordTextField("password");
 		TextField<String> highestEducation = new TextField<String>("highestEducation");
 		TextField<String> employment = new TextField<String>("employment");
-		TextField<Boolean> alreadyClientOfBank = new TextField<Boolean>("alreadyClientOfBank");
+		//TextField<Boolean> alreadyClientOfBank = new TextField<Boolean>("alreadyClientOfBank");
 		
 		form.add(name);
 		form.add(surname);
@@ -73,7 +73,7 @@ public class RegistrationPage extends BasePage{
 		form.add(password);
 		form.add(highestEducation);
 		form.add(employment);
-		form.add(alreadyClientOfBank);
+		//form.add(alreadyClientOfBank);
 		
 		form.add(new FeedbackPanel("feedbackPanel"));
 		

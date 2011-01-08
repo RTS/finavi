@@ -6,6 +6,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.authorization.strategies.page.SimplePageAuthorizationStrategy;
 import org.apache.wicket.protocol.http.WebApplication;
 
+import com.finavi.portal.page.bank.BankEvidencePage;
 import com.finavi.portal.page.base.AutheticatedPage;
 import com.finavi.portal.page.user.RegistrationPage;
 import com.finavi.portal.page.user.ScoringRequestFormPage;
@@ -20,6 +21,7 @@ public class FinaviApplication extends WebApplication{
 		mountBookmarkablePage("/ziadostHypoteky", ScoringRequestFormPage.class);
 		mountBookmarkablePage("/about", AboutPage.class);
 		mountBookmarkablePage("/pouzivatelia", UserTablePage.class);
+		mountBookmarkablePage("/banky", BankEvidencePage.class);
 	}
 	
 	@Override
