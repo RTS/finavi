@@ -24,6 +24,8 @@ public class BasePage extends WebPage{
 	protected List<String> highestEducationList = Arrays.asList(new String[] {
 			"stredné", "stredné s maturitou", "vysokoškolské" });
 	protected List<String> employmentList = Arrays.asList(new String[] {"Bankovníctvo", "Zdravotníctvo", "Verejná správa", "IT", "Telekomunikácie", "Priemysel", "Živnostník", "iné" });
+	protected List<Integer> childList = Arrays.asList(new Integer[] {0,1,2,3,4,5});
+	
 	
 	public BasePage() {
 		
