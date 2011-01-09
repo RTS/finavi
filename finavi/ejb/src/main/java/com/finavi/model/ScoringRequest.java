@@ -24,9 +24,9 @@ public class ScoringRequest implements Serializable {
 
 	private String familyStatus;
 
-	private Integer numberOfChildren;
+	private Integer numberOfChildren = 0;
 
-	private Integer numberOfDependentChildren;
+	private Integer numberOfDependentChildren = 0;
 
 	private String realPropertyType;
 
@@ -45,6 +45,7 @@ public class ScoringRequest implements Serializable {
 	private String currentHousing;
 
 	public ScoringRequest() {
+
 	}
 
 	public ScoringRequest(User applicant, Long age, Double incomeOfApplicant,

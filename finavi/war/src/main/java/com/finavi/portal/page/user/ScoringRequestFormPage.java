@@ -54,10 +54,11 @@ public class ScoringRequestFormPage extends AutheticatedPage {
 		DropDownChoice familyStatus = new DropDownChoice("familyStatus",
 				familyStatusList);
 		
-		TextField<Integer> numberOfChildren = new TextField<Integer>(
-				"numberOfChildren");
-		TextField<Integer> numberOfDependentChildren = new TextField<Integer>(
-				"numberOfDependentChildren");
+		DropDownChoice numberOfChildren = new DropDownChoice("numberOfChildren",
+				childList);
+		DropDownChoice numberOfDependentChildren = new DropDownChoice("numberOfDependentChildren",
+				childList);
+		
 		DropDownChoice realPropertyType = new DropDownChoice("realPropertyType",
 				realPropertyTypeList);
 		TextField<Integer> numberOfAdultPersons = new TextField<Integer>(
