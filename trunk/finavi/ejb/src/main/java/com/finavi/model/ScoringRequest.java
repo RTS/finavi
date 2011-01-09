@@ -2,58 +2,58 @@ package com.finavi.model;
 
 import java.io.Serializable;
 
-public class ScoringRequest implements Serializable{
+public class ScoringRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private User applicant;
-	
-	private long age;
-	
-	private double incomeOfApplicant;
-	
-	private double expensesOfApplicant;
-	
-	private double loanAmount;
-	
+
+	private Long age;
+
+	private Double incomeOfApplicant;
+
+	private Double expensesOfApplicant;
+
+	private Double loanAmount;
+
 	private long repaymentPeriod;
-	
-	private long fixation;
-	
-	private double realPropertyValue;
-	
+
+	private Long fixation;
+
+	private Double realPropertyValue;
+
 	private String familyStatus;
-	
-	private int numberOfChildren;
-	
-	private int numberOfDependentChildren;
-	
+
+	private Integer numberOfChildren;
+
+	private Integer numberOfDependentChildren;
+
 	private String realPropertyType;
-	
-	private int numberOfAdultPersons;
-	
-	private boolean coApplicant;
-	
-	private double incomeOfCoApplicant;
-	
-	private double expensesOfCoApplicant;
-	
+
+	private Integer numberOfAdultPersons;
+
+	private Boolean coApplicant;
+
+	private Double incomeOfCoApplicant;
+
+	private Double expensesOfCoApplicant;
+
 	private String highestEducation;
-	
+
 	private String employment;
-	
+
 	private String currentHousing;
-	
+
 	public ScoringRequest() {
 	}
-	
-	public ScoringRequest(User applicant, long age, double incomeOfApplicant,
-			double expensesOfApplicant, double loanAmount,
-			long repaymentPeriod, long fixation, double realPropertyValue,
-			String familyStatus, int numberOfChildren,
-			int numberOfDependentChildren, String realPropertyType,
-			int numberOfAdultPersons, boolean coApplicant,
-			double incomeOfCoApplicant, double expensesOfCoApplicant,
+
+	public ScoringRequest(User applicant, Long age, Double incomeOfApplicant,
+			Double expensesOfApplicant, Double loanAmount,
+			long repaymentPeriod, Long fixation, Double realPropertyValue,
+			String familyStatus, Integer numberOfChildren,
+			Integer numberOfDependentChildren, String realPropertyType,
+			Integer numberOfAdultPersons, Boolean coApplicant,
+			Double incomeOfCoApplicant, Double expensesOfCoApplicant,
 			String highestEducation, String employment, String currentHousing) {
 		super();
 		this.applicant = applicant;
@@ -85,35 +85,35 @@ public class ScoringRequest implements Serializable{
 		this.applicant = applicant;
 	}
 
-	public long getAge() {
+	public Long getAge() {
 		return age;
 	}
 
-	public void setAge(long age) {
+	public void setAge(Long age) {
 		this.age = age;
 	}
 
-	public double getIncomeOfApplicant() {
+	public Double getIncomeOfApplicant() {
 		return incomeOfApplicant;
 	}
 
-	public void setIncomeOfApplicant(double incomeOfApplicant) {
+	public void setIncomeOfApplicant(Double incomeOfApplicant) {
 		this.incomeOfApplicant = incomeOfApplicant;
 	}
 
-	public double getExpensesOfApplicant() {
+	public Double getExpensesOfApplicant() {
 		return expensesOfApplicant;
 	}
 
-	public void setExpensesOfApplicant(double expensesOfApplicant) {
+	public void setExpensesOfApplicant(Double expensesOfApplicant) {
 		this.expensesOfApplicant = expensesOfApplicant;
 	}
 
-	public double getLoanAmount() {
+	public Double getLoanAmount() {
 		return loanAmount;
 	}
 
-	public void setLoanAmount(double loanAmount) {
+	public void setLoanAmount(Double loanAmount) {
 		this.loanAmount = loanAmount;
 	}
 
@@ -125,19 +125,19 @@ public class ScoringRequest implements Serializable{
 		this.repaymentPeriod = repaymentPeriod;
 	}
 
-	public long getFixation() {
+	public Long getFixation() {
 		return fixation;
 	}
 
-	public void setFixation(long fixation) {
+	public void setFixation(Long fixation) {
 		this.fixation = fixation;
 	}
 
-	public double getRealPropertyValue() {
+	public Double getRealPropertyValue() {
 		return realPropertyValue;
 	}
 
-	public void setRealPropertyValue(double realPropertyValue) {
+	public void setRealPropertyValue(Double realPropertyValue) {
 		this.realPropertyValue = realPropertyValue;
 	}
 
@@ -149,19 +149,19 @@ public class ScoringRequest implements Serializable{
 		this.familyStatus = familyStatus;
 	}
 
-	public int getNumberOfChildren() {
+	public Integer getNumberOfChildren() {
 		return numberOfChildren;
 	}
 
-	public void setNumberOfChildren(int numberOfChildren) {
+	public void setNumberOfChildren(Integer numberOfChildren) {
 		this.numberOfChildren = numberOfChildren;
 	}
 
-	public int getNumberOfDependentChildren() {
+	public Integer getNumberOfDependentChildren() {
 		return numberOfDependentChildren;
 	}
 
-	public void setNumberOfDependentChildren(int numberOfDependentChildren) {
+	public void setNumberOfDependentChildren(Integer numberOfDependentChildren) {
 		this.numberOfDependentChildren = numberOfDependentChildren;
 	}
 
@@ -173,35 +173,35 @@ public class ScoringRequest implements Serializable{
 		this.realPropertyType = realPropertyType;
 	}
 
-	public int getNumberOfAdultPersons() {
+	public Integer getNumberOfAdultPersons() {
 		return numberOfAdultPersons;
 	}
 
-	public void setNumberOfAdultPersons(int numberOfAdultPersons) {
+	public void setNumberOfAdultPersons(Integer numberOfAdultPersons) {
 		this.numberOfAdultPersons = numberOfAdultPersons;
 	}
 
-	public boolean isCoApplicant() {
+	public Boolean getCoApplicant() {
 		return coApplicant;
 	}
 
-	public void setCoApplicant(boolean coApplicant) {
+	public void setCoApplicant(Boolean coApplicant) {
 		this.coApplicant = coApplicant;
 	}
 
-	public double getIncomeOfCoApplicant() {
+	public Double getIncomeOfCoApplicant() {
 		return incomeOfCoApplicant;
 	}
 
-	public void setIncomeOfCoApplicant(double incomeOfCoApplicant) {
+	public void setIncomeOfCoApplicant(Double incomeOfCoApplicant) {
 		this.incomeOfCoApplicant = incomeOfCoApplicant;
 	}
 
-	public double getExpensesOfCoApplicant() {
+	public Double getExpensesOfCoApplicant() {
 		return expensesOfCoApplicant;
 	}
 
-	public void setExpensesOfCoApplicant(double expensesOfCoApplicant) {
+	public void setExpensesOfCoApplicant(Double expensesOfCoApplicant) {
 		this.expensesOfCoApplicant = expensesOfCoApplicant;
 	}
 
@@ -228,5 +228,5 @@ public class ScoringRequest implements Serializable{
 	public void setCurrentHousing(String currentHousing) {
 		this.currentHousing = currentHousing;
 	}
-	
+
 }

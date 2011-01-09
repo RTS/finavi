@@ -1,7 +1,12 @@
 package com.finavi.portal.page.user;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -9,15 +14,27 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import com.finavi.model.ScoringRequest;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
-import com.finavi.portal.page.welcome.WelcomePage;
 import com.finavi.portal.service.FinaviService;
 
-public class ScoringRequestFormPage extends AutheticatedPage{
+public class ScoringRequestFormPage extends AutheticatedPage {
 
+	private List<String> familyStatusList = Arrays.asList(new String[] {
+			"slobodný", "ženatý", "rozvedený" });
+	private List<String> highestEducationList = Arrays.asList(new String[] {
+			"stredné", "stredné s maturitou", "vysokoškolské" });
+	private List<String> realPropertyTypeList = Arrays.asList(new String[] {
+			"byt", "dom", "iné" });
+	private List<String> employmentList = Arrays.asList(new String[] {null,
+			"Bankovníctvo", "Zdravotnictvo", "Verejná správa", "IT", "Telekomunikácie", "Priemysel", "Živnostník", "iné" });
+	
+	
 	public ScoringRequestFormPage() {
-		
-		Form<ScoringRequest> form = new Form<ScoringRequest>("scoringRequestForm", new CompoundPropertyModel<ScoringRequest>(new ScoringRequest())){
-			
+
+		Form<ScoringRequest> form = new Form<ScoringRequest>(
+				"scoringRequestForm",
+				new CompoundPropertyModel<ScoringRequest>(
+						getNewScoringRequest())) {
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -27,30 +44,43 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 				FinaviService.getMorgageService().calculateScorings(request);
 				setResponsePage(ScoringTablePage.class);
 			}
-			
+
 		};
-		
+
 		TextField<Long> age = new TextField<Long>("age");
-		TextField<Double> incomeOfApplicant = new TextField<Double>("incomeOfApplicant");
-		TextField<Double> expensesOfApplicant = new TextField<Double>("expensesOfApplicant");
-		TextField<Double> loanAmount = new TextField<Double>("loanAmount");
+		RequiredTextField<Double> incomeOfApplicant = new RequiredTextField<Double>(
+				"incomeOfApplicant");
+		RequiredTextField<Double> expensesOfApplicant = new RequiredTextField<Double>(
+				"expensesOfApplicant");
+		RequiredTextField<Double> loanAmount = new RequiredTextField<Double>("loanAmount");
 		TextField<Long> repaymentPeriod = new TextField<Long>("repaymentPeriod");
-		TextField<Long> fixation = new TextField<Long>("fixation");
-		TextField<Double> realPropertyValue = new TextField<Double>("realPropertyValue");
-		TextField<String> familyStatus = new TextField<String>("familyStatus");
-		TextField<Integer> numberOfChildren = new TextField<Integer>("numberOfChildren");
-		TextField<Integer> numberOfDependentChildren = new TextField<Integer>("numberOfDependentChildren");
-		TextField<String> realPropertyType = new TextField<String>("realPropertyType");
-		TextField<Integer> numberOfAdultPersons = new TextField<Integer>("numberOfAdultPersons");
+		RequiredTextField<Long> fixation = new RequiredTextField<Long>("fixation");
+		RequiredTextField<Double> realPropertyValue = new RequiredTextField<Double>(
+				"realPropertyValue");
+		DropDownChoice familyStatus = new DropDownChoice("familyStatus",
+				familyStatusList);
+		
+		TextField<Integer> numberOfChildren = new TextField<Integer>(
+				"numberOfChildren");
+		TextField<Integer> numberOfDependentChildren = new TextField<Integer>(
+				"numberOfDependentChildren");
+		DropDownChoice realPropertyType = new DropDownChoice("realPropertyType",
+				realPropertyTypeList);
+		TextField<Integer> numberOfAdultPersons = new TextField<Integer>(
+				"numberOfAdultPersons");
 		CheckBox coApplicant = new CheckBox("coApplicant");
-		
-		
-		TextField<Double> incomeOfCoApplicant = new TextField<Double>("incomeOfCoApplicant");
-		TextField<Double> expensesOfCoApplicant = new TextField<Double>("expensesOfCoApplicant");
-		TextField<String> highestEducation = new TextField<String>("highestEducation");
-		TextField<String> employment = new TextField<String>("employment");
-		TextField<String> currentHousing = new TextField<String>("currentHousing");
-		
+
+		TextField<Double> incomeOfCoApplicant = new TextField<Double>(
+				"incomeOfCoApplicant");
+		TextField<Double> expensesOfCoApplicant = new TextField<Double>(
+				"expensesOfCoApplicant");
+		DropDownChoice highestEducation = new DropDownChoice("highestEducation",
+				highestEducationList);
+		DropDownChoice employment = new DropDownChoice("employment",
+				employmentList);
+		TextField<String> currentHousing = new TextField<String>(
+				"currentHousing");
+
 		form.add(age);
 		form.add(incomeOfApplicant);
 		form.add(expensesOfApplicant);
@@ -70,11 +100,19 @@ public class ScoringRequestFormPage extends AutheticatedPage{
 		form.add(highestEducation);
 		form.add(employment);
 		form.add(currentHousing);
-		
-		form.add(new FeedbackPanel("feedbackPanel"));
-		
+
 		add(form);
+
+	}
+
+	private ScoringRequest getNewScoringRequest() {
+		ScoringRequest scoringRequest = new ScoringRequest();
+		scoringRequest.setFamilyStatus(familyStatusList.get(0));
+		scoringRequest.setHighestEducation(highestEducationList.get(0));
+		scoringRequest.setRealPropertyType(realPropertyTypeList.get(0));
+		scoringRequest.setEmployment(null);
 		
+		return scoringRequest;
 	}
 
 }
