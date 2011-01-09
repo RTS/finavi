@@ -105,6 +105,8 @@ public class BankEvidencePage extends AutheticatedPage {
 	}
 
 	class ActionPanel extends Panel {
+		private static final long serialVersionUID = 7355626822206566086L;
+
 		public ActionPanel(String id, IModel model) {
 			super(id, model);
 			add(new Link("select") {
