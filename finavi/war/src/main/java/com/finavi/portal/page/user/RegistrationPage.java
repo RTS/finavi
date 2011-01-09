@@ -56,8 +56,12 @@ public class RegistrationPage extends BasePage{
 		RequiredTextField<String> email = new RequiredTextField<String>("email");
 		email.add(EmailAddressValidator.getInstance());
 		PasswordTextField password = new PasswordTextField("password");
-		TextField<String> highestEducation = new TextField<String>("highestEducation");
-		TextField<String> employment = new TextField<String>("employment");
+		DropDownChoice highestEducation = new DropDownChoice("highestEducation",
+				highestEducationList);
+		highestEducation.setNullValid(true);
+		DropDownChoice employment = new DropDownChoice("employment",
+				employmentList);
+		employment.setNullValid(true);
 		//TextField<Boolean> alreadyClientOfBank = new TextField<Boolean>("alreadyClientOfBank");
 		
 		form.add(name);

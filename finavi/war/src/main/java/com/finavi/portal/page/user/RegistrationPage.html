@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.5-strict.dtd">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FiNavi - Registracia</title>
@@ -110,7 +109,7 @@
 						<label>Najvyššie vzdelanie:</label>
 					</td>
 					<td>
-						<input wicket:id="highestEducation"/>
+						<select wicket:id="highestEducation"></select>
 					</td>
 				</tr>
 				<tr>
@@ -118,7 +117,7 @@
 						<label>Zamestnanie:</label>
 					</td>
 					<td>
-						<input wicket:id="employment"/>
+						<select wicket:id="employment" name="employment"></select>
 					</td>
 				</tr>
 				<!--<tr>
