@@ -8,7 +8,6 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import com.finavi.model.ScoringRequest;
@@ -19,13 +18,13 @@ import com.finavi.portal.service.FinaviService;
 public class ScoringRequestFormPage extends AutheticatedPage {
 
 	private List<String> familyStatusList = Arrays.asList(new String[] {
-			"slobodn˝", "ûenat˝", "rozveden˝" });
+			"slobodn√Ω", "≈æenat√Ω", "rozveden√Ω" });
 	private List<String> highestEducationList = Arrays.asList(new String[] {
-			"strednÈ", "strednÈ s maturitou", "vysokoökolskÈ" });
+			"stredn√©", "stredn√© s maturitou", "vysoko≈°kolsk√©" });
 	private List<String> realPropertyTypeList = Arrays.asList(new String[] {
-			"byt", "dom", "inÈ" });
+			"byt", "dom", "in√©" });
 	private List<String> employmentList = Arrays.asList(new String[] {null,
-			"BankovnÌctvo", "Zdravotnictvo", "Verejn· spr·va", "IT", "Telekomunik·cie", "Priemysel", "éivnostnÌk", "inÈ" });
+			"Bankovn√≠ctvo", "Zdravotn√≠ctvo", "Verejn√° spr√°va", "IT", "Telekomunik√°cie", "Priemysel", "≈Ωivnostn√≠k", "in√©" });
 	
 	
 	public ScoringRequestFormPage() {
