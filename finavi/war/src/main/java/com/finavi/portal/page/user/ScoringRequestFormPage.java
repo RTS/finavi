@@ -23,8 +23,7 @@ public class ScoringRequestFormPage extends AutheticatedPage {
 			"stredné", "stredné s maturitou", "vysokoškolské" });
 	private List<String> realPropertyTypeList = Arrays.asList(new String[] {
 			"byt", "dom", "iné" });
-	private List<String> employmentList = Arrays.asList(new String[] {null,
-			"Bankovníctvo", "Zdravotníctvo", "Verejná správa", "IT", "Telekomunikácie", "Priemysel", "Živnostník", "iné" });
+	private List<String> employmentList = Arrays.asList(new String[] {"Bankovníctvo", "Zdravotníctvo", "Verejná správa", "IT", "Telekomunikácie", "Priemysel", "Živnostník", "iné" });
 	
 	
 	public ScoringRequestFormPage() {
@@ -77,6 +76,7 @@ public class ScoringRequestFormPage extends AutheticatedPage {
 				highestEducationList);
 		DropDownChoice employment = new DropDownChoice("employment",
 				employmentList);
+		employment.setNullValid(true);
 		TextField<String> currentHousing = new TextField<String>(
 				"currentHousing");
 

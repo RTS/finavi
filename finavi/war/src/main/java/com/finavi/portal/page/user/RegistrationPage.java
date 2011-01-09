@@ -7,15 +7,14 @@ import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.validation.validator.EmailAddressValidator;
 
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
-import com.finavi.portal.page.base.AutheticatedPage;
 import com.finavi.portal.page.base.BasePage;
-import com.finavi.portal.page.welcome.WelcomePage;
 import com.finavi.portal.service.FinaviService;
 
 public class RegistrationPage extends BasePage{
@@ -46,6 +45,7 @@ public class RegistrationPage extends BasePage{
 		list2.add(new Character('M'));
 		list2.add(new Character('Z'));
 		DropDownChoice<Character> sex = new DropDownChoice<Character>("sex", list2);
+		sex.setNullValid(true);
 		
 		TextField<String> personalNumber = new TextField<String>("personalNumber");
 		TextField<String> street = new TextField<String>("street");
@@ -53,7 +53,8 @@ public class RegistrationPage extends BasePage{
 		TextField<String> city = new TextField<String>("city");
 		TextField<String> postalCode = new TextField<String>("postalCode");
 		TextField<String> phone = new TextField<String>("phone");
-		TextField<String> email = new TextField<String>("email");
+		RequiredTextField<String> email = new RequiredTextField<String>("email");
+		email.add(EmailAddressValidator.getInstance());
 		PasswordTextField password = new PasswordTextField("password");
 		TextField<String> highestEducation = new TextField<String>("highestEducation");
 		TextField<String> employment = new TextField<String>("employment");
@@ -73,10 +74,6 @@ public class RegistrationPage extends BasePage{
 		form.add(password);
 		form.add(highestEducation);
 		form.add(employment);
-		//form.add(alreadyClientOfBank);
-		
-		form.add(new FeedbackPanel("feedbackPanel"));
-		
 		add(form);
 		
 	}
