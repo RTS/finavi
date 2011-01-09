@@ -110,7 +110,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 					+ request.getFixation() + " rokov.");
 			return scoring;
 		} else {
-			double totalIncome = request.isCoApplicant() ? request
+			Double totalIncome = request.getCoApplicant() ? request
 					.getIncomeOfApplicant() + request.getIncomeOfCoApplicant()
 					: request.getIncomeOfApplicant();
 			double bilance = calculateBilance(request);
@@ -178,7 +178,7 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 
 	private double calculateBilance(ScoringRequest request) {
 		double bilance = 0d;
-		if (request.isCoApplicant()) {
+		if (request.getCoApplicant()) {
 			bilance = request.getIncomeOfApplicant()
 					+ request.getIncomeOfCoApplicant()
 					- request.getExpensesOfApplicant()

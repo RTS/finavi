@@ -6,7 +6,6 @@
 <body>
 	<wicket:extend>
 	<form action="post" wicket:id="scoringRequestForm">
-		<div wicket:id="feedbackPanel"></div>
 		<table>
 			<colgroup>
 				<col width="250"/>
@@ -20,7 +19,7 @@
 						<input wicket:id="age"/>
 					</td>
 					<td>
-						<label>Príjem žiadateľa:</label>
+						<label for="incomeOfApplicant"><wicket:message key="incomeOfApplicant"></wicket:message></label>
 					</td>
 					<td>
 						<input wicket:id="incomeOfApplicant"/>
@@ -65,7 +64,7 @@
 						<label>Rodinný stav:</label>
 					</td>
 					<td>
-						<input wicket:id="familyStatus"/>
+						<select wicket:id="familyStatus" name="familyStatus"></select>
 					</td>
 				</tr>
 				<tr>
@@ -87,7 +86,7 @@
 						<label>Typ nehnuteľosti:</label>
 					</td>
 					<td>
-						<input wicket:id="realPropertyType"/>
+						<select wicket:id="realPropertyType" name="realPropertyType"></select>
 					</td>
 					<td>
 						<label>Počet dospelých osôb:</label>
@@ -121,15 +120,15 @@
 						<label>Zamestnanie:</label>
 					</td>
 					<td>
-						<input wicket:id="employment"/>
+						<select wicket:id="employment" name="employment"></select>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label>Zamestnanie:</label>
+						<label>Vzdelanie:</label>
 					</td>
 					<td>
-						<input wicket:id="highestEducation"/>
+						<select wicket:id="highestEducation" name="highestEducation"></select>
 					</td>
 					<td>
 						<label>Aktuálne bydlisko:</label>

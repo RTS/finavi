@@ -222,3 +222,25 @@ tr.headers th {
 	font-size: 11px;
 	line-height: 12px;
 }
+.feedbackPanelINFO {
+color:green;
+font-weight:bold;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+}
+.feedbackPanelERROR {
+color:red;
+font-weight:bold;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+
+}
+.mainFeedback {
+	text-align: center;
+}
+.mainFeedback ul{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}

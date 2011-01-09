@@ -3,6 +3,7 @@ package com.finavi.portal.page.base;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
@@ -15,8 +16,13 @@ import com.finavi.portal.page.user.UserTablePage;
 import com.finavi.portal.page.welcome.WelcomePage;
 
 public class BasePage extends WebPage{
+	
+	protected FeedbackPanel mainFeedback = new FeedbackPanel("mainFeedback");
 
 	public BasePage() {
+		
+		mainFeedback.setOutputMarkupId(true);
+		add(mainFeedback);
 
 		IModel<?> model = new LoadableDetachableModel<Object>() {
 
