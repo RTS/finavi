@@ -16,6 +16,7 @@ import com.finavi.model.Scoring;
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.base.AutheticatedPage;
+import com.finavi.portal.page.common.MessageFormatColumn;
 import com.finavi.portal.service.FinaviService;
 
 public class ScoringTablePage extends AutheticatedPage {
@@ -41,21 +42,22 @@ public class ScoringTablePage extends AutheticatedPage {
 
 		collumns.add(new PropertyColumn<Scoring>(
 				new Model<String>("Banka"), "bank"));
-		collumns.add(new PropertyColumn<Scoring>(
-				new Model<String>("RPMN"), "rpmn"));
-		collumns.add(new PropertyColumn<Scoring>(
+		
+		collumns.add(new MessageFormatColumn<Scoring>(new Model<String>("RPMN"), "rpmn", "{0}%"));
+		
+		collumns.add(new MessageFormatColumn<Scoring>(
 				new Model<String>("Mesačná splátka"),
-				"monthlyPayment"));
-		collumns.add(new PropertyColumn<Scoring>(
+				"monthlyPayment","{0}€"));
+		collumns.add(new MessageFormatColumn<Scoring>(
 				new Model<String>("Úroková sadzba"),
-				"interestRate"));
-		collumns.add(new PropertyColumn<Scoring>(
+				"interestRate","{0}%"));
+		collumns.add(new MessageFormatColumn<Scoring>(
 				new Model<String>(
 						"Poplatok za vedenie účtu"),
-				"accountFee"));
-		collumns.add(new PropertyColumn<Scoring>(
+				"accountFee","{0}€"));
+		collumns.add(new MessageFormatColumn<Scoring>(
 				new Model<String>("Poplatok za vybavenie"),
-				"loanProcessCharge"));
+				"loanProcessCharge","{0}€"));
 
 		SortableDataProvider<Scoring> provider = new SortableDataProvider<Scoring>() {
 
