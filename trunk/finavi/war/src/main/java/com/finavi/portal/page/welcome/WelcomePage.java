@@ -50,7 +50,6 @@ public class WelcomePage extends BasePage {
 				}
 			}
 		};
-		form.add(new FeedbackPanel("feedback"));
 		TextField<String> loginField = new TextField<String>("email");
 		PasswordTextField passwordField = new PasswordTextField("password");
 
