@@ -19,12 +19,8 @@ public class ScoringRequestFormPage extends AutheticatedPage {
 
 	private List<String> familyStatusList = Arrays.asList(new String[] {
 			"slobodný", "ženatý", "rozvedený" });
-	private List<String> highestEducationList = Arrays.asList(new String[] {
-			"stredné", "stredné s maturitou", "vysokoškolské" });
 	private List<String> realPropertyTypeList = Arrays.asList(new String[] {
 			"byt", "dom", "iné" });
-	private List<String> employmentList = Arrays.asList(new String[] {"Bankovníctvo", "Zdravotníctvo", "Verejná správa", "IT", "Telekomunikácie", "Priemysel", "Živnostník", "iné" });
-	
 	
 	public ScoringRequestFormPage() {
 

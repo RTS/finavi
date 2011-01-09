@@ -1,5 +1,8 @@
 package com.finavi.portal.page.base;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -18,7 +21,10 @@ import com.finavi.portal.page.welcome.WelcomePage;
 public class BasePage extends WebPage{
 	
 	protected FeedbackPanel mainFeedback = new FeedbackPanel("mainFeedback");
-
+	protected List<String> highestEducationList = Arrays.asList(new String[] {
+			"stredné", "stredné s maturitou", "vysokoškolské" });
+	protected List<String> employmentList = Arrays.asList(new String[] {"Bankovníctvo", "Zdravotníctvo", "Verejná správa", "IT", "Telekomunikácie", "Priemysel", "Živnostník", "iné" });
+	
 	public BasePage() {
 		
 		mainFeedback.setOutputMarkupId(true);
