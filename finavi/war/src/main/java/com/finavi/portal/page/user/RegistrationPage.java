@@ -74,6 +74,7 @@ public class RegistrationPage extends BasePage{
 		email.add(new AbstractBehavior() {
 			@Override
 			public void onRendered(Component component) {
+				
 				component.getResponse().write("<span class=\"required\">*</span>");
 			}
 		});

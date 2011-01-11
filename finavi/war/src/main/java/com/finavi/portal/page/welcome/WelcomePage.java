@@ -45,6 +45,7 @@ public class WelcomePage extends BasePage {
 						setResponsePage(UserTablePage.class);
 					}
 				} catch (Exception e) {
+					this.getResponse().setCharacterEncoding("UTF-8");
 					this.error("Nesprávne meno alebo heslo!");
 				}
 			}

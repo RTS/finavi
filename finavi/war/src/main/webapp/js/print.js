@@ -23,7 +23,7 @@ function add_print_link( id ){
   var print_function_link = document.createElement('a');
   print_function_link.onclick =  function(){ print_preview(); return false; };
   print_function_link.setAttribute('href', '#');	
-  var print_function_link_text = document.createTextNode('Zobraziť náhľad a Tlačiť');
+  var print_function_link_text = document.createTextNode('Zobrazi\u0165 n\u00e1h\u013ead a tla\u010di\u0165');
   print_function_link.appendChild(print_function_link_text);
   // create print link
   //var print_function = document.createElement('p');
