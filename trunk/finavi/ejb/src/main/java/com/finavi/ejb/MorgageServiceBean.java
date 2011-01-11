@@ -76,6 +76,14 @@ public class MorgageServiceBean implements MorgageServiceLocal {
 		Loan loan = bank.getLoan();
 		scoring.setBank(bank);
 		scoring.setApplicant(request.getApplicant());
+		if(request.getAge()+request.getRepaymentPeriod()>=65){
+			scoring.setDenialReason("Nie je možné poskytnúť hypotéku, nakoľko by nebola splatená pred 65 rokom života.");
+			return scoring;
+		}
+		if(request.getLoanAmount()>request.getRealPropertyValue()){
+			scoring.setDenialReason("Hodnota nehnuteľnosti je nižšia ako požadovaná hypotéka.");
+			return scoring;
+		}
 		if (loan.getMaxAmount() < request.getLoanAmount()) {
 			scoring.setDenialReason("Žiadaná suma je vyššia ako je maximálny možný úver: "
 					+ loan.getMaxAmount() + "€.");

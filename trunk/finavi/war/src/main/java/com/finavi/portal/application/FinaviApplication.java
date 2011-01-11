@@ -14,8 +14,8 @@ import com.finavi.portal.page.user.UserTablePage;
 import com.finavi.portal.page.welcome.AboutPage;
 import com.finavi.portal.page.welcome.WelcomePage;
 
-public class FinaviApplication extends WebApplication{
-	
+public class FinaviApplication extends WebApplication {
+
 	public FinaviApplication() {
 		mountBookmarkablePage("/registracia", RegistrationPage.class);
 		mountBookmarkablePage("/ziadostHypoteky", ScoringRequestFormPage.class);
@@ -23,28 +23,31 @@ public class FinaviApplication extends WebApplication{
 		mountBookmarkablePage("/pouzivatelia", UserTablePage.class);
 		mountBookmarkablePage("/banky", BankEvidencePage.class);
 	}
-	
+
 	@Override
 	public Class<? extends WelcomePage> getHomePage() {
 		return WelcomePage.class;
 	}
-	
+
 	@Override
 	public Session newSession(Request request, Response response) {
 		return new FinaviSession(request);
 	}
-	
+
 	@Override
 	protected void init() {
-		getSecuritySettings().setAuthorizationStrategy(new SimplePageAuthorizationStrategy(AutheticatedPage.class, WelcomePage.class) {
-			
-			@Override
-			protected boolean isAuthorized() {
-				return FinaviSession.get().isAuthenticated();
-			}
-		});
+		getRequestCycleSettings().setResponseRequestEncoding("UTF-8");
+		getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
+		getMarkupSettings().setStripXmlDeclarationFromOutput(false);
+		getSecuritySettings().setAuthorizationStrategy(
+				new SimplePageAuthorizationStrategy(AutheticatedPage.class,
+						WelcomePage.class) {
+
+					@Override
+					protected boolean isAuthorized() {
+						return FinaviSession.get().isAuthenticated();
+					}
+				});
 	}
-	
-	
-	
+
 }
