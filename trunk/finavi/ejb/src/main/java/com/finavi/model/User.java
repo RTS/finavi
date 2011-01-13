@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
 @Entity
 public class User implements Serializable{
 	private static final long serialVersionUID = 6819280874413951096L;
@@ -45,7 +47,7 @@ public class User implements Serializable{
 	private String postalCode;
 	
 	private String phone;
-	
+	@Column(unique=true)
 	private String email;
 	
 	private String highestEducation;

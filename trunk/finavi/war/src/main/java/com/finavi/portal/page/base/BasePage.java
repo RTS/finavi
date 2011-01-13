@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.wicket.RequestCycle;
 import org.apache.wicket.extensions.util.encoding.CharSetUtil;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -11,10 +12,12 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.request.target.basic.RedirectRequestTarget;
 
 import com.finavi.model.User;
 import com.finavi.portal.application.FinaviSession;
 import com.finavi.portal.page.bank.BankEvidencePage;
+import com.finavi.portal.page.user.AgentRegistrationPage;
 import com.finavi.portal.page.user.ScoringRequestFormPage;
 import com.finavi.portal.page.user.ScoringTablePage;
 import com.finavi.portal.page.user.UserTablePage;
@@ -119,6 +122,46 @@ public class BasePage extends WebPage {
 			public void onClick() {
 				setRedirect(true);
 				setResponsePage(BankEvidencePage.class);
+			}
+
+			@Override
+			public boolean isVisible() {
+				if (FinaviSession.get().isAuthenticated()) {
+					User u = FinaviSession.get().getLoggedUser();
+					return User.isUserInRole(u, "agent");
+				} else {
+					return false;
+				}
+			}
+		});
+		
+		add(new Link<String>("admin") {
+
+			private static final long serialVersionUID = 1235674532L;
+
+			public void onClick() {
+				setRedirect(true);
+				RequestCycle.get().setRequestTarget(new RedirectRequestTarget("http://www.db4free.net/phpMyAdmin/index.php"));
+			}
+
+			@Override
+			public boolean isVisible() {
+				if (FinaviSession.get().isAuthenticated()) {
+					User u = FinaviSession.get().getLoggedUser();
+					return User.isUserInRole(u, "admin");
+				} else {
+					return false;
+				}
+			}
+		});
+		
+		add(new Link<String>("agentRegistration") {
+
+			private static final long serialVersionUID = 1235674532L;
+
+			public void onClick() {
+				setRedirect(true);
+				setResponsePage(AgentRegistrationPage.class);
 			}
 
 			@Override

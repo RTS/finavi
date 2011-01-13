@@ -55,6 +55,13 @@ public interface UserServiceRemote {
 	 * @return vrati ci prebehla v poriadku.
 	 */
 	public User register(User user);
+	
+	/**
+	 * Vytvori agenta.
+	 * @param user Udaje o existujucom pouzivatelovi. 
+	 * @return vrati agenta
+	 */
+	public User switchToAgent(User user);
 	/**
 	 * User login. 
 	 * 

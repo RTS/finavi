@@ -8,6 +8,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 
 import com.finavi.portal.page.bank.BankEvidencePage;
 import com.finavi.portal.page.base.AutheticatedPage;
+import com.finavi.portal.page.user.AgentRegistrationPage;
 import com.finavi.portal.page.user.RegistrationPage;
 import com.finavi.portal.page.user.ScoringRequestFormPage;
 import com.finavi.portal.page.user.UserTablePage;
@@ -22,6 +23,7 @@ public class FinaviApplication extends WebApplication {
 		mountBookmarkablePage("/about", AboutPage.class);
 		mountBookmarkablePage("/pouzivatelia", UserTablePage.class);
 		mountBookmarkablePage("/banky", BankEvidencePage.class);
+		mountBookmarkablePage("/agent", AgentRegistrationPage.class);
 	}
 
 	@Override

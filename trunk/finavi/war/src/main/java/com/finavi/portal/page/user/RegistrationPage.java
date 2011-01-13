@@ -29,11 +29,12 @@ public class RegistrationPage extends BasePage{
 
 			@Override
 			protected void onSubmit() {
-				System.out.println(getModelObject().getCity());
 				User u = FinaviService.getUserService().register(getModelObject());
 				if (u!=null){
 					((FinaviSession) getSession()).setLoggedUser(u);
 					setResponsePage(ScoringTablePage.class);
+				}else {
+					error("Nepodarilo sa zaregistrovať používateľa. Emailová adresa je už v databáze.");
 				}
 				
 			}
