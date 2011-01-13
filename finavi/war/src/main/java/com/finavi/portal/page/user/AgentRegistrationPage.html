@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"; xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"; xml:lang="sk" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>FiNavi - Registracia Agenta</title>
+</head>
+<body>
+	<wicket:extend>
+	<p>Ako agent môžete existujúcemu používateľovi udeliť status agenta.<br />Vyplnte jeho emailovú adresu a stačte Pridaj agenta.</p>
+	<form action="post" wicket:id="agentRegistrationForm">
+		<table class="formtable">
+			<tbody>
+				<tr >
+					<td>
+						<label>Email:</label>
+					</td>
+					<td class="important">
+						<input wicket:id="email"/>
+					</td>
+					<td >
+						<input type="submit" value="Pridaj agenta">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	</wicket:extend>
+</body>
+</html>

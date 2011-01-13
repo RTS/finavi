@@ -124,4 +124,14 @@ public class UserServiceBean implements UserServiceLocal {
 		return ( List<User>)q.getResultList();
 	}
 
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	public User switchToAgent(User user) {
+		user.getRoles().clear();
+		Role r =em.find(Role.class, 2l);
+		user.getRoles().add(r);
+		return eao.save(user);
+	}
+
 }
